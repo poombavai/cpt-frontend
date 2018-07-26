@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>CPT</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <!-- Font CSS -->
+        <link rel="stylesheet" href="css/Roboto.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        <style>
+		.selected {
+            background: #f7f7f7;
+         }
+		</style>
+		
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <img src="images/LOGO.png">
+                </div>
+                <ul class="list-unstyled components">
+                    <li class="active">
+                        <a href="Dashboard.html"><i class="fas fa-tv"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-sitemap"></i>Taxonomy</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-search"></i>Sourcing</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-file-alt"></i>Schema</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-database"></i>Data</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Page Content Holder -->
+            <div class="page active">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <div class="logo">
+                                <button id="sidebarCollapse" class="btn">
+                                    <i class="fas fa-align-left"></i>
+                                    <span>Taxonomy</span>
+                                </button>
+                            </div>
+                            <button class="btn" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                                <i class="fas fa-power-off" alt="Logout"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+                <section class="page-content assign-tax">
+                    <div class="subheader">
+                        <div class="stepwizard">
+                            <div class="stepwizard-row setup-panel">
+                                <div class="stepwizard-step">
+                                    <a href="#step-1" class="btn btn-danger btn-circle step-complete">1</a>
+                                    <p>Upload your file</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-2" class="btn btn-danger btn-circle step-complete">2</a>
+                                    <p>Choose SKU's Column</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-3" class="btn btn-danger btn-circle step-complete">3</a>
+                                    <p>Recommended SKU's</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-4" class="btn btn-danger btn-circle step-complete">4</a>
+                                    <p>Taxonomy Tree Creation</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-5" class="btn btn-danger btn-circle active">5</a>
+                                    <p>Assign SKU's</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                     <div class="subheader">
+                        <h4 class="mb-0">Assign SKUs</h4>
+                        <p>
+                            <label>No. Of SKUs (Assigned / Total): <span id="assigedcount">0</span><span>/</span><span id="allcount">0</span></label>
+                        </p>
+                        <a href="Recommended-sku.html">
+                            <button class="btn btn-light">
+                                <i class="fas fa-check"></i>
+                                <span>Done</span>
+                            </button>
+                        </a>
+                    </div> -->
+                    <div class="container-fluid content">
+<!--                         <div class="row mb-3 pb-2 stepper_btn">
+                            <div class=" col-md-12 d-flex align-items-center justify-content-end">
+                                <a href="Recommended-sku.html">
+                                  <button class="btn btn-light">
+                                      <i class="fas fa-check"></i>
+                                      <span>Done</span>
+                                  </button>
+                                </a>
+                            </div>
+                        </div> -->
+                        <div id="redips-drag" class="row">
+                            <div class="col-md-3 col-sm-12">
+                                <div class="card created-tax">
+                                    <div class="tax-header">
+                                        <input type="text" id="ulinput" onkeyup="myFunction()" placeholder="Search.." class="form-control">
+                                        <p>Total No. of Taxonomy: <span>200</span></p>
+                                    </div>
+                                    <ul id="myUL" class="list-unstyled mb-0"></ul>
+                                </div>
+                            </div>
+                            <div class="col-md-9 col-sm-12">
+                                <h3 class="card_title d-flex align-items-center justify-content-between mb-2">
+                                        <div class="d-inline-flex filter-check">
+                                            <label class="d-flex align-items-center mr-3 mb-0"><input class="mr-1" type="radio" id="All" onclick="selectitem(this);" value="1" name="filter"checked>All</label>
+                                            <label class="d-flex align-items-center mr-3 mb-0"><input class="mr-1" type="radio" id="Assigned" onclick="selectitem(this);" value="2" name="filter">Assigned</label>
+                                            <label class="d-flex align-items-center mr-3 mb-0"><input class="mr-1" type="radio" id="Unassigned" onclick="selectitem(this);" value="3" name="filter">Unassigned</label>
+                                        </div>
+                                        <label class="mb-0 sku-assign">No. Of SKUs (Assigned / Total): <span id="assigedcount">0</span><span>/</span><span id="allcount">0</span></label>
+                                        <label class="mb-0 d-flex align-items-center">
+                                            <input id="myInput" class="float-right" type="text" placeholder="Search.." name="" onkeyup="searchbox()">
+                                            <a href="Recommended-sku.html">
+                                                <button class="btn btn-light btn-done">
+                                                    <i class="fas fa-check"></i>
+                                                    <span>Done</span>
+                                                </button>
+                                            </a>
+                                        </label>
+                                </h3>
+                                <div class="card sku-table">
+                                    <div class="card-body table-scroll">
+                                        <table id="rigttable" class="table">
+                                            <thead id="righttablehead"></thead>
+                                            <tbody id="myTable"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tax-cnt d-flex justify-content-center align-items-center">
+                                    <span>
+                                        <button class="btn btn-default" onclick="myUndoFunction()">Undo</button>
+                                        <button class="btn btn-default" id ="assign" onclick="myAssignFunction()">Assign</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="overlay" id="loading" style="display:none;">
+                        <img src="./images/loader.gif">
+                    </div>
+                </section>
+                <footer>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Design by <a href="https://www.altiussolution.com/" target="blank">Altius Technology Solutions</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <script src="js/W3/w3data.js"></script>
+        <!-- jQuery CDN -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript">
+            w3IncludeHTML();
+        </script>
+        <script src="js/baseurl.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="js/MultiSelect/multiselect.js"></script>
+        <script src="js/assign.js"></script>
+
+    </body>
+</html>

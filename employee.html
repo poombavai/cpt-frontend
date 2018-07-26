@@ -1,0 +1,594 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>CPT</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <!-- Font CSS -->
+        <link rel="stylesheet" href="css/Roboto.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+         <!-- <link rel="stylesheet" href="css/w3css/w3.css"> -->
+        
+    </head>
+    <body>
+	<p id ="demo"></p>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar" class="active">
+                <div class="sidebar-header">
+                    <img src="images/LOGO.png">
+                </div>
+                <ul class="list-unstyled components">
+                    
+                    <li class="active">
+                        <a href="Dashboard.html"><i class="fas fa-tv"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-sitemap"></i>Taxonomy</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-search"></i>Sourcing</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-file-alt"></i>Schema</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-database"></i>Data</a>
+                    </li>
+               <li>
+                        <a href="employee.html"><i class="fas fa-database"></i>Employee Skills</a>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- Page Content Holder -->
+            <div class="page">
+                <nav class="navbar navbar-default">
+                  <div class="container-fluid">
+                      <div class="navbar-header">
+                          <div class="logo">
+                              <button id="sidebarCollapse" class="btn">
+                                  <i class="fas fa-align-left"></i>
+                                  <span>Employee Skills</span>
+                              </button>
+                          </div>
+                          <button class="btn" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                              <i class="fas fa-power-off" alt="Logout"></i>
+                          </button>
+                      </div>
+                  </div>
+              </nav>
+
+			
+              <section class="page-content"> 
+                            <div class="col-md-12 col-sm-12">
+                                <h3 class="card_title">
+                                   <label><span ></span><span ></span></label>
+                                    <span class="float-right d-flex">
+									 <input id="myInput" type="text" placeholder="Search" onkeyup="searchbox()">
+                                        <button id="addRow" class="btn btn-link border-0" onclick="addrowclick()">Add</button>
+                                        
+                                    </span>
+                                </h3>
+                                <div class="card">
+                                    <div class="card-body table-scroll">
+                                        <table id="rigttable" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="th d-none">#</th>
+                                                    <th class="th">Employee Id </th>
+                                                    <th class="th">Frist Name</th>
+                                                    <th class="th">Last Name</th>
+                                                    <th class="th">Designation</th>
+                                                    <th class="th">Date of Joining</th>
+                                                    <th class="th">Sourcing</th>
+													
+        
+													<th class="th">Taxonomy </th>
+													<th class="th">Schema </th>
+													<th class="th">Data</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody id="myTable">
+											
+													
+
+                                              <tr>
+                                                  
+																								
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer tax-cnt text-right">
+                                        <span>
+                                            <button class="btn btn-default" onclick="saveonlyJeyaEdit()">Save</button>
+                                          
+                                            <!-- <button class="btn btn-default"><a href="Assign-Taxonomy.html">Assign</a></button> -->
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div id="snackbar">Employee Details Saved Successfully</div>
+                            </div>
+                        </div>
+                    </div>
+                  <!--  <div class="overlay" id="loading">
+                        <img src="../images/loader.gif">
+                    </div>-->
+                </section>
+                <footer>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Design by <a href="https://www.altiussolution.com/" target="blank">Altius Technology Solutions</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <script src="js/W3/w3data.js"></script>
+        <!-- jQuery CDN -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="js/baseurl.js"></script>  
+        <script src="js/custom.js"></script>
+       <!--  <script src="/js/Dragjs/redips-drag-min.js"></script>
+        <script src="datajs/taxonomy.js"></script>
+        <script src="/js/Hilitor.js"></script>
+        <script src="datajs/taxonomycreate.js"></script>-->
+
+<script type="text/javascript">
+var GlobalURl="";
+    window.onload = function () {
+	 GlobalURl= GlobalURLset();
+            loadDoc();
+			//var idcount =0;
+        };
+ 
+
+ 
+ 
+  function myFunction1(elm) {
+  
+  debugger;
+                var getparent = elm.parentElement;
+                var vall = elm.innerText;
+                // console.log(vall);
+                if (vall == "click to add")
+                {
+                    vall = "";
+					
+                }
+				
+			 
+				var value = '<select onfocusout="OnFocusOutForm(this)" autofocus="true" >' 
+				
+				+'<option>1</option>'
+				+'<option>2</option>'
+				+'<option>3</option>'
+				+'<option>4</option>'
+				+'<option>5</option>'
+				'</select><span class="delete_ind" onclick="myclose(this)"><i class="fas fa-times"></i></span>';
+                elm.parentElement.innerHTML = value;
+                elm.remove();
+				
+				
+				
+}
+
+				
+ 
+  
+ 
+ 
+
+function addrowclick()
+            {
+              //  idcount =ParseInt(idcount)+1;
+            var row = document.getElementById("myTable");
+            if(row.innerText.length != 0)
+            {
+			debugger;
+            var lstchild = row.insertRow(0);
+			//var lstchild = row.lastElementChild;
+           // var index = parseInt(lstchild.children[0].innerText) + 1;
+			
+			//alert(+idcount);
+			row.innerHTML += '<tr><td class="td d-none"><div class="redips-drag redips-row">Newrow</div></td><td class="td">'//Newrow
+            +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td><td class="td">'
+            +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td><td class="td">'
+            +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td><td class="td">'
+            +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td><td class="td">'
+            +'<div class="redips-drag blue redips-clone" onclick="drop(this)"><span>click to add</span></div></td><td class="td">'
+            +'<div class="redips-drag blue redips-clone" onclick="myFunction1(this)"><span>click to add</span></div></td><td class="td">'
+            +'<div class="redips-drag blue redips-clone" onclick="myFunction1(this)"><span>click to add</span></div></td><td class="td">'
+            +'<div class="redips-drag blue redips-clone" onclick="myFunction1(this)"><span>click to add</span></div></td><td class="td">'
+            +'<div class="redips-drag blue redips-clone" onclick="myFunction1(this)"><span>click to add</span></div></td><td class="td">'
+            //+'<span onclick="deleterow(this)"><i class="fas fa-trash-alt"></i></span></td></tr>';
+            }
+            else
+            {
+                debugger;
+            //    var index = 1;
+				row.innerHTML += '<tr><td class="td d-none"><div class="redips-drag redips-row">Newrow</div></td><td class="td">'//Newrow
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)" ><span>click to add </span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)" ><span>click to add</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="drop(this)"><span>click to add</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction1(this)"><span>click to add</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction1(this)"><span>click to add</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction1(this)"><span>click to add</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction1(this)"><span>click to add</span></div></td><td class="td">'
+
+              // +'<span onclick="deleterow(this)"><i class="fas fa-trash-alt"></i></span></td></tr>';
+            }
+            }
+            
+            
+
+
+
+
+function myFunction(elm) {
+                var getparent = elm.parentElement;
+                var vall = elm.innerText;
+                // console.log(vall);
+                if (vall == "click to add")
+                {
+                    vall = "";
+					
+                }
+                var value = '<textarea onfocusout="OnFocusOutForm(this)" autofocus="true" >' + vall + '</textarea><span class="delete_ind" onclick="myclose(this)"><i class="fas fa-times"></i></span>';
+                elm.parentElement.innerHTML = value;
+                elm.remove();
+				
+}
+
+  function OnFocusOutForm(elm) {
+                var vall = elm.value;
+                var value = "";
+                if (vall == "") {
+                    vall = "click to add"
+                    value = '<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>' + vall + '</span></div>';
+                }
+                else
+                {
+                    value = '<div class="redips-drag blue redips-clone" onclick="myFunction(this)">' + vall + '</div><span class="delete_ind" onclick="myclose(this)"><i class="fas fa-times"></i></span>';
+                }
+                
+                elm.parentElement.innerHTML = value;
+                elm.remove();
+            }
+            $('#btnAddRow').on('click', function () {
+
+                var lastRow = $('#tblAddRow tbody tr:first').html();
+                $('#tblAddRow tbody').append('<tr>' + lastRow + '</tr>');
+                $('#tblAddRow tbody tr:first input').val('');
+            });
+
+            $('#tblAddRow').on('click', 'tr a', function (e) {
+                var lenRow = $('#tblAddRow tbody tr').length;
+                e.preventDefault();
+                if (lenRow == 1 || lenRow <= 1) {
+                    alert("Can't remove all row!");
+                } else {
+                    $(this).parents('tr').remove();
+                }
+            });
+            
+
+
+function drop(elm)
+{
+debugger;
+var getparent = elm.parentElement;
+                var vall = elm.innerText;
+                // console.log(vall);
+                if (vall == "click to add")
+                {
+                    vall = "";
+					
+                }
+               
+			   
+var value  = '<textarea  onfocusout="OnFocusOutForm(this)" autofocus="true" placeholder="dd/mm/yyyy" name="startdate"  required pattern="\d{1,2}/\d{1,2}/\d{4}">' + vall + '</textarea t><span class="delete_ind" onclick="myclose(this)"><i class="fas fa-times"></i></span>';
+                elm.parentElement.innerHTML = value ;
+                elm.remove();
+
+}
+			
+			
+     function loadDoc() {
+            debugger;
+			 
+            var url = GlobalURl+'/employees';
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                             //loadDoc2(response);
+							 loadDoc2jeyaEdit(response);
+                    } else {
+                        console.error(xhr.statusText);
+                    }
+                }
+            };
+            xhr.onerror = function (e) {
+                console.error(xhr.statusText);
+            };
+            xhr.send();
+        }
+
+      /*  function loadDoc2(read,elm)
+        {
+			for (var prop in read) {
+
+                var count = parseInt(prop);
+                var item = read[prop];
+				
+                var id = item['id'];
+                var first_name = item['first_name'];
+                var last_name =item['last_name'];
+               var date_of_joining=item['date_of_joining'];
+               var  designation=item['designation'];
+               var emp_id =item['emp_id'];
+               var data= document.getElementById("myTable");
+               
+                data.innerHTML += '<tr><td class="td d-none"><div class="redips-drag redips-row">' +id+ '</div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+emp_id+ '</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+first_name+'</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+last_name+'</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+designation+'</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="drop(this)(this)"><span>'+date_of_joining+'</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td></tr>'
+		
+    
+	     } 
+        }*/
+		
+		function loadDoc2jeyaEdit(read)
+        {
+		    debugger;
+			for (var prop in read) {
+
+                var count = parseInt(prop);
+                var item = read[prop];
+				var itemone = read[prop];
+				for(var pp in itemone)
+				{
+				var cou =parseInt(pp);
+				var id = itemone[cou]['id'];
+                var first_name = itemone[cou]['first_name'];
+				var last_name =itemone[cou]['last_name'];
+               var date_of_joining=itemone[cou]['date_of_joining'];
+               var  designation=itemone[cou]['designation'];
+               var emp_id =itemone[cou]['emp_id'];
+				debugger;
+				var dropsource = itemone[cou]['expertise_level'];
+				var sourcing = dropsource[0];
+				var taxonomy = dropsource[1];
+				var Schema = dropsource[2];
+				var Data = dropsource[3];
+               var data= document.getElementById("myTable");
+         debugger;
+                data.innerHTML += '<tr><td class="td d-none"><span onclick="myFunction(this)">' +id+ '</span></td><td class="td">'
+                +'<span onclick="myFunction(this)">'+emp_id+'</span></td><td class="td">'//emp_id
+                +'<span onclick="myFunction(this)">'+first_name+'</span></td><td class="td">'//first_name
+                +'<span onclick="myFunction(this)">'+last_name+'</span></td><td class="td">'//last_name
+                +'<span onclick="myFunction(this)">'+designation+'</span></td><td class="td">'//+designation
+                +'<span onclick="drop(this)(this)">'+date_of_joining+'</span></td> <td class="td">'//+date_of_joining+
+				+'<span onclick="myFunction1(this)">'+sourcing+'</span></td><td class="td">'
+				+'<span onclick="myFunction1(this)">'+taxonomy+'</span></td><td class="td">'
+                +'<span onclick="myFunction1(this)">'+Schema+'</span></td><td class="td">'
+                +'<span onclick="myFunction1(this)">'+Data+'</span></td></tr>';
+				}
+                     
+			
+    
+	     } 
+        }
+		
+		function saveonlyJeyaEdit()
+		{
+		debugger;
+		var Newrow;
+        var rowarr1=[];
+        var rowarr=[];
+        var rowid="";
+		var oTable = document.getElementById('myTable');
+
+               //gets rows of table
+           var rowLength = oTable.rows.length;
+
+              //loops through rows    
+              for (i = 0; i < rowLength; i++) {
+			  debugger;
+
+                     //gets cells of current row
+                   var oCells = oTable.rows.item(i).cells;
+
+                     //gets amount of cells of current row
+                   var cellLength = oCells.length;
+
+                   //loops through each cell in current row
+                for(var j = 0; j < cellLength; j++) {
+				//debugger;
+                  // get your cell info here 
+                   var cellVal = oCells.item(j).innerHTML; 
+				   var rightrowval=oCells.item(j).innerText;
+                if(rightrowval === "Newrow")//Newrow
+                {
+                    if(j == 0)
+                    {
+                        rowid="null";
+                    }
+                }
+                else
+                {
+                    if(j == 0)
+                    {
+                        rowid=oCells.item(0).innerText;
+                    }
+                    else
+                    {
+					//debugger;
+                        var rowval =  oCells.item(j).innerText; 
+                        rowarr.push(rowval); 
+                    }
+                }
+           }
+		    var strings = rowarr;
+			rowarr=[];
+            rowarr1.push({id:rowid,data:strings});
+            rowid="";
+         }
+		
+		    save(rowarr1);
+		
+		}
+		 
+		
+		
+		
+		
+		
+		
+		
+	/*function saveonly()
+        {
+        debugger;
+		var Newrow;
+        var rowarr1=[];
+        var rowarr=[];
+        var rowid="";
+        var myTab = document.getElementById('myTable');
+
+        // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+        for (i = 0; i < myTab.rows.length; i++) {
+            debugger;
+            // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+            var objCells = myTab.rows.item(i).cells;
+
+            // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
+            for (var j = 0; j <=9; j++) {
+                var rightrowval=objCells.item(j).innerText;
+                if(rightrowval === "Newrow")
+                {
+                    if(j == 0)
+                    {
+                        rowid="null";
+                    }
+                }
+                else
+                {
+                    if(j == 0)
+                    {
+                        rowid=objCells.item(0).innerText;
+                    }
+                    else
+                    {
+                        var rowval =  objCells.item(j).innerText; 
+                        rowarr.push(rowval); 
+                    }
+                }
+            }
+
+            var strings = rowarr;
+			
+			console.log(rowval);
+            rowarr=[];
+            rowarr1.push({id:rowid,data:strings});
+            rowid="";
+            //rowarr1.push(strings);
+          
+        }
+         save(rowarr1);
+
+    }*/
+         function save(rowarr1)
+        {
+            debugger;
+           // var url = GlobalURl+"/taxonomy_creation";
+                var url = GlobalURl+'/bulk_save';
+                var xhr = new XMLHttpRequest;
+                xhr.open("POST", url , true);
+                xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                    	debugger;
+                         console.log(xhr.responseText);
+						 debugger;
+                         var responsedata=JSON.parse(xhr.responseText);
+                         responsedata=responsedata.employee;
+						var x = document.getElementById("snackbar");
+                        x.className = "show";
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                        localStorage.setItem('Mytaxdata', responsedata);		
+			
+			
+                    }
+                };
+                var id=localStorage.getItem('MyId');
+               debugger
+                var data = JSON.stringify({"employee":rowarr1});
+                //alert(data);
+                console.log(data);
+                xhr.send(data);
+        }
+		function searchbox() {
+		debugger;
+                var input, filter, table, tr, td, i;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("rigttable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td");
+                    for (j = 0; j < td.length; j++) {
+                        let tdata = td[j];
+                        if (tdata) {
+                            if (tdata.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+								<!-- document.getElementById("noresultright").style.display = "none"; -->
+                                break;
+                            } else {
+                                tr[i].style.display = "none";
+								
+								<!-- var noresult = document.getElementById("noresultright").innerText; -->
+								
+								<!-- document.getElementById("noresultright").style.display = "Contents"; -->
+                            }
+                        }
+                    }
+                }
+            }
+ 
+ 			</script>
+
+
+    </body>
+</html>

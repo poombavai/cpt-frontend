@@ -1,0 +1,583 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>CPT</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <!-- Font CSS -->
+        <link rel="stylesheet" href="css/Roboto.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        <style>
+		.selected {
+            background: #f7f7f7;
+         }
+		</style>
+		
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <img src="images/LOGO.png">
+                </div>
+                <ul class="list-unstyled components">
+                    <li class="active">
+                        <a href="Dashboard.html"><i class="fas fa-tv"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-sitemap"></i>Taxonomy</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-search"></i>Sourcing</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-file-alt"></i>Schema</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-database"></i>Data</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Page Content Holder -->
+            <div class="page active">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <div class="logo">
+                                <button id="sidebarCollapse" class="btn">
+                                    <i class="fas fa-align-left"></i>
+                                    <span>Taxonomy</span>
+                                </button>
+                            </div>
+                            <button class="btn" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                                <i class="fas fa-power-off" alt="Logout"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+                <section class="page-content assign-tax">
+                    <div class="subheader">
+                        <h4 class="mb-0">Assign SKUs</h4>
+                        <p>
+                            <label>No. Of SKUs (Assigned / Total): <span>100 / 5000</span></label>
+                        </p>
+                        <a href="Recommended-sku.html">
+                            <button class="btn btn-light">
+                                <i class="fas fa-check"></i>
+                                <span>Done</span>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="container-fluid content">
+                        <div id="redips-drag" class="row">
+                            <div class="col-md-3 col-sm-12">
+                                <div class="card created-tax">
+                                    <div class="tax-header">
+                                        <input type="text" id="ulinput" onkeyup="myFunction()" placeholder="Search.." class="form-control">
+                                        <p>Total No. of Taxonomy: <span>200</span></p>
+                                    </div>
+                                    <ul id="myUL" class="list-unstyled mb-0">
+									    <!-- <li id="noresultleft" style="display:none">No results matching</li> -->
+                                        
+                                    </ul>
+                                </div>
+<!--                                 <div class="tax-cnt d-flex justify-content-between align-items-center">
+                                    <p>Total Taxonomy: <span>200</span></p>
+                                </div> -->
+                            </div>
+                            <div class="col-md-9 col-sm-12">
+                                <h3 class="card_title d-flex align-items-center justify-content-between mb-2">
+<!--                                     <select id="selectedval" onchange="selectitem()">
+                                        <option value="1">All</option>
+                                        <option value="2">Assigned</option>
+                                        <option value="3">Unassigned</option>
+                                    </select> -->
+                                    <!-- <label class="mb-0">All</label> -->
+                                        <div class="d-inline-flex filter-check">
+                                            <label class="d-flex align-items-center mr-3 mb-0"><input class="mr-1" type="radio" id="All" onclick="selectitem(this);" value="1" name="filter"checked>All</label>
+                                            <label class="d-flex align-items-center mr-3 mb-0"><input class="mr-1" type="radio" id="Assigned" onclick="selectitem(this);" value="2" name="filter">Assigned</label>
+                                            <label class="d-flex align-items-center mr-3 mb-0"><input class="mr-1" type="radio" id="Unassigned" onclick="selectitem(this);" value="3" name="filter">Unassigned</label>
+                                        </div>
+                                    <label class="mb-0 d-flex align-items-center">
+                                        <input id="myInput" class="float-right" type="text" placeholder="Search.." name="" onkeyup="searchbox()">
+                                    </label>
+                                </h3>
+                                <div class="card table-scroll sku-table">
+                                    <div class="card-body">
+                                        <table id="rigttable" class="table">
+                                            <thead id="righttablehead">
+                                                
+                                            </thead>
+                                            <tbody id="myTable">
+											    
+                                                 
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tax-cnt d-flex justify-content-center align-items-center">
+                                    <span>
+                                        <button class="btn btn-default" onclick="myUndoFunction()">Undo</button>
+                                        <button class="btn btn-default" id ="assign" onclick="myAssignFunction()">Assign</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Design by <a href="https://www.altiussolution.com/" target="blank">Altius Technology Solutions</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <!-- jQuery CDN -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="js/Dragjs/redips-drag-min.js"></script>
+        <script src="js/MultiSelect/multiselect.js"></script>
+        <script type="text/javascript">
+
+             window.onload = function () {
+
+                getloaddata();
+				
+                Allassignandunassign();
+				//assignedval();
+
+        };
+
+        function getloaddata(){
+		   debugger;
+            var url ="http://192.168.1.58:3300/project_taxonomies?project_id=1";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+						alert(xhr.responseText);
+                    var treedata;
+                    for ( var i in response) {
+                   treedata =  response[i].tree ;
+                   let id= response[i].id;
+				   var data = document.getElementById('myUL');
+                data.innerHTML +='<li id='+id+' onmousedown="leftRowClick(this,false);">'+treedata+'</li>';
+                 
+                  }
+
+                    } else {
+                    }
+                }
+            };
+                
+
+            xhr.onerror = function (e) {
+                console.error(xhr.statusText);
+            };
+            xhr.send();
+
+        }
+		function Allassignandunassign()
+		{
+		  var url="http://192.168.1.58:3300/input_file_taxonomy?project_id=1&type=all";
+		  var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        alert(xhr.responseText);
+						console.log(xhr.responseText);
+						 var boolval =0;
+						 var rowtext='';
+						 var rowcount=1;
+						for (var res in response)
+						{
+						   
+						    debugger;
+						   let value =response[res];
+						   var val =value['values'];
+						   let id =value['id'];
+                            rowtext= rowtext +'<tr id='+id+' onmousedown="RowClick(this,false);">';
+							if(boolval == 0)
+                           {
+							
+						   var headtext='<tr><th class="th">#</th>';
+							var vv =0;
+							for(var ii in val)
+							{
+							  
+							  let Keyname=Object.keys(val)[vv];
+							  
+                              vv= parseInt(vv)+1;
+							  var sttxt='<th class="th">'+Keyname+'</th>';
+                              headtext = headtext+sttxt;							  
+                            }
+							 headtext =headtext+'<th class="th">Taxonomy</th>';
+						     headtext=headtext+'</tr>';
+							 //document.getElementById("righttablehead").appendChild(headtext);
+							 var headdata = document.getElementById('righttablehead');
+                             headdata.innerHTML +=headtext;
+						     boolval=1;
+						   }
+						   rowtext= rowtext+'<td><div class="unselect-row">'+rowcount+'</div><div class="select-row" style="display: none;"><i class="fas fa-check"></i></div></td>';
+						    for(var li in val)
+							{
+							  let keyvalue =val[li];
+							  var lostr='<td><div><span>'+keyvalue+'</span></div></td>';
+							  rowtext=rowtext+lostr;
+							
+							}
+							rowtext=rowtext+'<td><div><span>'Taxonomy Process'</span></div></td>';
+							rowtext=rowtext+'</tr>';
+							rowcount = parseInt(rowcount)+1;
+						   
+						}
+						var rowdata = document.getElementById('myTable');
+                         rowdata.innerHTML +=rowtext;
+                        //document.getElementById("myTable").appendChild(rowtext);
+
+                    } else {
+                    }
+                }
+            };
+                
+
+            xhr.onerror = function (e) {
+                console.error(xhr.statusText);
+            };
+            xhr.send();
+		  
+		  
+		}
+		
+		 function assignedval()
+		 {
+		 
+				  var url = "http://192.168.1.58:3300/input_file_taxonomy?project_id=1&type=assigned";
+                  var xhr = new XMLHttpRequest();
+                   xhr.open("GET", url, true);
+                   xhr.onload = function (e) {
+                  if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+					 debugger;
+                        var response = JSON.parse(xhr.responseText);
+                         alert(xhr.responseText);
+                    var boolval =0;
+						 var rowtext='';
+						 var rowcount=1;
+						for (var res in response)
+						{
+						   rowtext= rowtext +'<tr onmousedown="RowClick(this,false);">';
+						    debugger;
+						   let value =response[res];
+						   var val =value['values'];
+						   let id =value['id'];
+                            
+							if(boolval == 0)
+                           {
+							
+						   var headtext='<tr><th class="th">#</th>';
+							var vv =0;
+							for(var ii in val)
+							{
+							  
+							  let Keyname=Object.keys(val)[vv];
+							  
+                              vv= parseInt(vv)+1;
+							  var sttxt='<th class="th">'+Keyname+'</th>';
+                              headtext = headtext+sttxt;							  
+                            }
+						     headtext=headtext+'</tr>';
+							 //document.getElementById("righttablehead").appendChild(headtext);
+							 var headdata = document.getElementById('righttablehead');
+                             headdata.innerHTML +=headtext;
+						     boolval=1;
+						   }
+						   rowtext= rowtext+'<td><div class="unselect-row">'+rowcount+'</div><div class="select-row" style="display: none;"><i class="fas fa-check"></i></div></td>';
+						    for(var li in val)
+							{
+							  let keyvalue =val[li];
+							  var lostr='<td><div><span>'+keyvalue+'</span></div></td>';
+							  rowtext=rowtext+lostr;
+							
+							}
+							rowtext=rowtext+'</tr>';
+							rowcount = parseInt(rowcount)+1;
+						   
+						}
+						var rowdata = document.getElementById('myTable');
+                         rowdata.innerHTML +=rowtext;
+					
+					} else {
+                        console.error(xhr.statusText);
+                    }
+                  }
+               };
+               xhr.onerror = function (e) {
+                console.error(xhr.statusText);
+              };
+               xhr.send();
+		 
+		 }
+		 
+		 function unassignedval()
+		 {
+		     var url = "http://192.168.1.58:3300/input_file_taxonomy?project_id=1&type=unassigned";
+                  var xhr = new XMLHttpRequest();
+                   xhr.open("GET", url, true);
+                   xhr.onload = function (e) {
+                  if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+					 debugger;
+                        var response = JSON.parse(xhr.responseText);
+                         alert(xhr.responseText);
+						 var boolval =0;
+						 var rowtext='';
+						 var rowcount=1;
+						for (var res in response)
+						{
+						   rowtext= rowtext +'<tr  onmousedown="RowClick(this,false);">';
+						    debugger;
+						   let value =response[res];
+						   var val =value['values'];
+						   let id =value['id'];
+                            
+							if(boolval == 0)
+                           {
+							
+						   var headtext='<tr><th class="th">#</th>';
+							var vv =0;
+							for(var ii in val)
+							{
+							  
+							  let Keyname=Object.keys(val)[vv];
+							  
+                              vv= parseInt(vv)+1;
+							  var sttxt='<th class="th">'+Keyname+'</th>';
+                              headtext = headtext+sttxt;							  
+                            }
+						     headtext=headtext+'</tr>';
+							 //document.getElementById("righttablehead").appendChild(headtext);
+							 var headdata = document.getElementById('righttablehead');
+                             headdata.innerHTML +=headtext;
+						     boolval=1;
+						   }
+						   rowtext= rowtext+'<td><div class="unselect-row">'+rowcount+'</div><div class="select-row" style="display: none;"><i class="fas fa-check"></i></div></td>';
+						    for(var li in val)
+							{
+							  let keyvalue =val[li];
+							  var lostr='<td><div><span>'+keyvalue+'</span></div></td>';
+							  rowtext=rowtext+lostr;
+							
+							}
+							rowtext=rowtext+'</tr>';
+							rowcount = parseInt(rowcount)+1;
+						   
+						}
+						var rowdata = document.getElementById('myTable');
+                         rowdata.innerHTML +=rowtext;
+						 
+						 
+						 
+                    } else {
+                        console.error(xhr.statusText);
+                    }
+                  }
+               };
+               xhr.onerror = function (e) {
+                console.error(xhr.statusText);
+              };
+               xhr.send();
+		 
+		 
+		 
+		 }
+		 
+
+            function searchbox() {
+                var input, filter, table, tr, td, i;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("rigttable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td");
+                    for (j = 0; j < td.length; j++) {
+                        let tdata = td[j];
+                        if (tdata) {
+                            if (tdata.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+								<!-- document.getElementById("noresultright").style.display = "none"; -->
+                                break;
+                            } else {
+                                tr[i].style.display = "none";
+								
+								<!-- var noresult = document.getElementById("noresultright").innerText; -->
+								
+								<!-- document.getElementById("noresultright").style.display = "Contents"; -->
+                            }
+                        }
+                    }
+                }
+            }
+			
+			
+
+            function myFunction() {
+               // Declare variables
+                var input, filter, ul, li, a, i;
+                input = document.getElementById('ulinput');
+                filter = input.value.toUpperCase();
+                ul = document.getElementById('myUL');
+                li = ul.getElementsByTagName('li');
+
+                // Loop through all list items, and hide those who don't match the search query
+                for (i = 0; i < li.length; i++) {
+                    if (li[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        li[i].style.display = "";
+						<!-- document.getElementById("noresultleft").style.display = "none"; -->
+                    } else {
+                        li[i].style.display = "none";
+						<!-- document.getElementById("noresultleft").style.display = "Contents"; -->
+						
+                    }
+                }
+            }
+
+			function  selectitem(val){
+			<!-- var eID = document.getElementById("selectedval"); -->
+			var selectedval = val.value;
+			var selectedtxt = val.text;
+			//alert(selectedtxt);
+			if(selectedval==2)
+			{
+				//alert(selectedval);          // Assigned
+				var list = document.getElementById('righttablehead');
+                while (list.hasChildNodes()) {
+                  list.removeChild(list.firstChild);
+                    }
+	         var listone = document.getElementById('myTable');
+               while (listone.hasChildNodes()) {
+                  listone.removeChild(listone.firstChild);
+             }
+				
+				assignedval();
+		    }
+			else if(selectedval==1)
+			{
+				//alert(selectedval); //All
+				var list = document.getElementById('righttablehead');
+            while (list.hasChildNodes()) {
+             list.removeChild(list.firstChild);
+            }
+	           var listone = document.getElementById('myTable');
+             while (listone.hasChildNodes()) {
+             listone.removeChild(listone.firstChild);
+             }
+			     Allassignandunassign();
+			}
+			else
+			{
+				//alert(selectedval);   //UnAssigned
+				var list = document.getElementById('righttablehead');
+                  while (list.hasChildNodes()) {
+                  list.removeChild(list.firstChild);
+             }
+	          var listone = document.getElementById('myTable');
+              while (listone.hasChildNodes()) {
+               listone.removeChild(listone.firstChild);
+              }
+				unassignedval();
+		    }
+			}
+			
+			function myAssignFunction() {
+			debugger;
+			    let val =  document.getElementById('rigttable').querySelectorAll('.selected');
+				var sublist=[];
+				for(var i = 0; i < val.length ; i++) {
+                     alert(val[i].id)
+					 let jj =val[i].id;
+					 sublist.push(parseInt(jj));
+                  }
+				  
+				 let treeval= document.getElementById('myUL').querySelectorAll('.selected');
+			      var treevalid= '';
+				  for(var i = 0; i < treeval.length ; i++) {
+                     alert(treeval[i].id)
+					 treevalid=parseInt(treeval[i].id);
+                  }
+				  
+				var url = "http://192.168.1.58:3300/assign_taxonomy";
+				var jsdata = { 
+				                "project_id": 1,
+                                "project_tree_id": treevalid,
+                                "project_file_id": sublist
+				
+							 };
+               
+				var xhr = new XMLHttpRequest;
+                xhr.open("POST", url , true);
+                xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        debugger;
+						 //alert("In");
+						 //alert(xhr.responseText);
+                         var responsedata=xhr.responseText;
+						 var list = document.getElementById('righttablehead');
+                while (list.hasChildNodes()) {
+                  list.removeChild(list.firstChild);
+                    }
+	         var listone = document.getElementById('myTable');
+               while (listone.hasChildNodes()) {
+                  listone.removeChild(listone.firstChild);
+             }
+			             document.getElementById("All").checked = false;
+			             document.getElementById("Unassigned").checked = false;
+			             document.getElementById("Assigned").checked = true;
+						 assignedval();
+                    }
+                };
+				
+                var data = JSON.stringify(jsdata);
+                console.log(data);
+                xhr.send(data);
+				    
+			
+			}
+			function myUndoFunction() {
+			var table = document.getElementById('myTable');
+				console.log(table);
+				var table = document.getElementById('myTable');
+				table.innerHTML="";
+                table.innerHTML = '<tr onmousedown="RowClick(this,false);"><td><div class="unselect-row">1</div><div class="select-row" style="display: none;"><i class="fas fa-check"></i></div></td><td><div><span>TSLR6MP20</span></div></td> <td><div><span>POWER DC PTY LTD</span></div></td><td><div><span>BATTERY TOSHIBA AA ALKALINE   TSLR6MP20</span></div></td><td></td></tr><tr onmousedown="RowClick(this,false);"><td><div class="unselect-row">2</div><div class="select-row" style="display: none;"><i class="fas fa-check"></i></div></td><td><div><span>1209</span></div></td><td><div><span>TLE ELECTRICAL</span></div></td><td><div><span>BATTERY EVEREADY 1209 SUPER H/DUTY</span></div></td><td></td></tr><tr onmousedown="RowClick(this,false);"><td><div class="unselect-row">3</div><div class="select-row" style="display: none;"><i class="fas fa-check"></i></div></td><td><div><span>CA6V</span></div></td><td><div><span>POWER DC PTY LTD</span></div></td><td><div><span>BATTERY LANTERN 6V SUPER HEAVY DUTY CAMELION 4R25-SP1B</span></div></td><td></td></tr><tr onmousedown="RowClick(this,false);"><td><div class="unselect-row">4</div><div class="select-row" style="display: none;"><i class="fas fa-check"></i></div></td><td><div><span>EN22</span></div></td><td><div><span>TLE ELECTRICAL</span></div></td><td><div><span>BATTERY ENERGIZER 9V ALKALINE INDUSTRIAL EN22</span></div></td><td></td></tr><tr onmousedown="RowClick(this,false);"><td><div class="unselect-row">5</div><div class="select-row" style="display: none;"><i class="fas fa-check"></i></div></td><td><div><span>A23BP1</span></div></td><td><div><span>TLE ELECTRICAL</span></div></td><td><div><span>BATTERY ENERGIZER A23 ALKALINE 12V A23BP</span></div></td><td></td></tr>';
+			}
+        </script>
+    </body>
+</html>

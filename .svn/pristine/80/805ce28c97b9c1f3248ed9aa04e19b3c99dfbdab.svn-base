@@ -1,0 +1,479 @@
+           
+            var GlobalURl="";
+            var read = "";
+        window.onload = function () {
+           // debugger;
+		   GlobalURl= GlobalURLset();
+            var loading = document.getElementById("loading");
+            loading.style.display = "flex";
+            inputget();
+            loadDoc();
+            taxonomyload();
+            debugger;
+            //document.getElementById("skucount1").innerHTML = skucount1.toString();
+
+        };
+
+        function savecontinue()
+        {
+         debugger;
+        var rowarr1=[];
+        var rowarr=[];
+        var rowid="";
+        var myTab = document.getElementById('myTable');
+
+        // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+        for (i = 1; i < myTab.rows.length; i++) {
+            debugger;
+            // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+            var objCells = myTab.rows.item(i).cells;
+
+            // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
+            for (var j = 0; j < 7; j++) {
+                var rightrowval=objCells.item(j).innerText;
+                if(rightrowval === "Newrow")
+                {
+                    if(j == 0)
+                    {
+                        rowid="null";
+                    }
+                }
+                else
+                {
+                    if(j == 0)
+                    {
+                        rowid=objCells.item(0).innerText;
+                    }
+                    else
+                    {
+                        var rowval =  objCells.item(j).innerText; 
+                        rowarr.push(rowval); 
+                    }
+                }
+            }
+
+            var strings = rowarr;
+            rowarr=[];
+            rowarr1.push({id:rowid,data:strings});
+            rowid="";
+            //rowarr1.push(strings);
+          
+        }
+         saveandcon(rowarr1);
+
+        }
+
+        function saveonly()
+        {
+        debugger;
+        var rowarr1=[];
+        var rowarr=[];
+        var rowid="";
+        var myTab = document.getElementById('myTable');
+
+        // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+        for (i = 1; i < myTab.rows.length; i++) {
+            debugger;
+            // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+            var objCells = myTab.rows.item(i).cells;
+
+            // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
+            for (var j = 0; j < 7; j++) {
+                var rightrowval=objCells.item(j).innerText;
+                if(rightrowval === "Newrow")
+                {
+                    if(j == 0)
+                    {
+                        rowid="null";
+                    }
+                }
+                else
+                {
+                    if(j == 0)
+                    {
+                        rowid=objCells.item(0).innerText;
+                    }
+                    else
+                    {
+                        var rowval =  objCells.item(j).innerText; 
+                        rowarr.push(rowval); 
+                    }
+                }
+            }
+
+            var strings = rowarr;
+            rowarr=[];
+            rowarr1.push({id:rowid,data:strings});
+            rowid="";
+            //rowarr1.push(strings);
+          
+        }
+         save(rowarr1);
+
+    }
+
+
+       function saveandcon(rowarr1)
+        {
+            debugger;
+            var url = GlobalURl+"/taxonomy_creation";
+                //var url = "http://192.168.1.58:4040/projects/project_headers_duplicate_count";
+                var xhr = new XMLHttpRequest;
+                xhr.open("POST", url , true);
+                xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                    	//debugger;
+                         console.log(xhr.responseText);
+                         var responsedata=xhr.responseText;
+                         localStorage.setItem('Mytaxdata', responsedata);
+                         window.location="Recommended-sku-create.html";
+                    }
+                };
+                var id=localStorage.getItem('MyId');
+               
+                var data = JSON.stringify({"project_id":id,"taxonomy":rowarr1});
+                console.log(data);
+                xhr.send(data);
+        }
+        function save(rowarr1)
+        {
+            debugger;
+            var url = GlobalURl+"/taxonomy_creation";
+                //var url = "http://192.168.1.58:4040/projects/project_headers_duplicate_count";
+                var xhr = new XMLHttpRequest;
+                xhr.open("POST", url , true);
+                xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                    	//debugger;
+                         console.log(xhr.responseText);
+                         var responsedata=xhr.responseText;
+                            var x = document.getElementById("snackbar");
+                            x.className = "show";
+                            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                        // alert(xhr.responseText);
+                         localStorage.setItem('Mytaxdata', responsedata);
+                         location.reload();
+                         //window.location="Assign-Taxonomy.html";
+                    }
+                };
+                var id=localStorage.getItem('MyId');
+               
+                var data = JSON.stringify({"project_id":id,"taxonomy":rowarr1});
+                //alert(data);
+                console.log(data);
+                xhr.send(data);
+        }
+
+
+        function inputget()
+        {
+		debugger;
+            var id=localStorage.getItem('MyId');
+            var url = GlobalURl+"/projects/source_input_file?project_id="+id;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        debugger;
+                        var response = JSON.parse(xhr.responseText);
+                        console.log(response);
+                        //console.log(response);
+                        inputreferenceload(response);
+                    } else {
+                        console.error(xhr.statusText);
+                    }
+                }
+            };
+            xhr.onerror = function (e) {
+                console.error(xhr.statusText);
+            };
+            xhr.send();
+
+        }
+
+        function inputreferenceload(inputdata)
+        {
+		     debugger;
+             for (var prop in inputdata)
+             {
+                var count = parseInt(prop) + 1;
+                var inputrowdata = inputdata[prop];
+                var partnumber=inputrowdata['Supplier part no.'];
+                var suppliername=inputrowdata['Supplier Name'];
+                var description=inputrowdata['B&F ERP/Web Description'];
+
+                var data = document.getElementById('inputrow');
+                data.innerHTML +='<tr><td><span>'+count+'</span></td><td>'+partnumber+'</td><td>'+suppliername+'</td><td>'+description+'</td></tr>';
+
+             }
+        }
+        function loadDoc() {
+            debugger;
+            var taxonval=localStorage.getItem('SourcingTaxon');
+            loadDoc2(taxonval);
+            debugger;
+            redipsInit();
+           
+            var keywords = JSON.parse(taxonval);
+            keywords = keywords["keywords"];
+            var keyval = keywords.join(', ');
+            var myHilitor = new Hilitor("lefttable");
+            myHilitor.apply(keyval);
+        }
+
+        function taxonomyload()
+        {
+        	debugger;
+            var id=localStorage.getItem('MyId');
+        	var url = GlobalURl+"/project_taxonomy_list?project_id="+id;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        
+                        var response = JSON.parse(xhr.responseText);
+                        console.log(response);
+                        //console.log(response);
+                        //debugger;
+                        taxonomyloadbind(response);
+                    } else {
+                        console.error(xhr.statusText);
+                    }
+                }
+            };
+            xhr.onerror = function (e) {
+                console.error(xhr.statusText);
+            };
+            xhr.send();
+
+        }
+         function taxonomyloadbind(taxonomyloadres)
+         {
+         	debugger;
+         	//var taxores= JSON.parse(taxonomyloadres);
+            var skucount1=taxonomyloadres.length;
+            document.getElementById("skucount1").innerHTML = skucount1.toString();
+         	var righttaxvalarr=[];
+         	for (var prop in taxonomyloadres)
+         	{
+         		//debugger;
+         		var count = parseInt(prop) + 1;
+         		var rowid=taxonomyloadres[prop].id;
+                var item = taxonomyloadres[prop].tree;
+                for (var tax in item)
+                {
+                	var righttaxval = item[tax];
+                	righttaxvalarr.push(righttaxval);
+
+                }
+                debugger;
+                let t0="";
+                let t1="";
+                let t2="";
+                let t3="";
+                let t4="";
+                let t5="";
+               
+                 t0=righttaxvalarr[0];
+                 t1=righttaxvalarr[1];
+                 t2=righttaxvalarr[2];
+                 t3=righttaxvalarr[3];
+                 t4=righttaxvalarr[4];
+                 t5=righttaxvalarr[5];
+                if (typeof t0 === "undefined") {t0="";}
+                 if (typeof t1 === "undefined") {t1="";}
+                  if (typeof t2 === "undefined") {t2="";}
+                   if (typeof t3 === "undefined") {t3="";}
+                    if (typeof t4 === "undefined") {t4="";}
+                     if (typeof t5 === "undefined") {t5="";}
+
+
+                var data = document.getElementById('myTable');
+                data.innerHTML +='<tr><td class="td d-none"><div class="redips-drag redips-row">'+rowid+'</div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+t0+'</div></td>'
+                +'<td class="td"><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+t1+'</div></td>'
+                +'<td class="td"><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+t2+'</div></td>'
+                +'<td class="td"><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+t3+'</div></td>'
+                +'<td class="td"><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+t4+'</div></td>'
+                +'<td class="td"><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+t5+'</div></td>'
+                +'<td class="td"><span onclick="deleterow('+rowid+',this)"><i class="fas fa-trash-alt"></i></span></td></tr>';
+                righttaxvalarr = [];
+                t0="";
+                t1="";
+                t2="";
+                t3="";
+                t4="";
+                t5="";
+         	}
+         	loading.style.display = "none";
+         	//window.location="Recommended-sku-create.html";
+             
+           
+
+         }
+
+
+        function loadDoc2(read)
+        {
+            debugger;
+             var taxvalarr=[];
+            
+            read= JSON.parse(read);
+            var projectname=read["project_name"]
+            document.getElementById("projectname").innerHTML = projectname.toString();
+            var readdata = read["result"];
+            var skucount=readdata.length;
+            document.getElementById("skucount").innerHTML = skucount.toString();
+
+            for (var prop in readdata) {
+               
+                var count = parseInt(prop) + 1;
+                var item = readdata[prop];
+                var projects=item.project.name;
+                var taxonomylisi=item.taxonomy;
+                for (var tax in taxonomylisi)
+                {
+                    //debugger;
+                    var taxval = taxonomylisi[tax].name;
+                   /* if (taxval === undefined) {
+                         taxval="";
+                      }*/
+
+                    taxvalarr.push(taxval);
+
+                }
+
+                debugger;
+                let t0="";
+                let t1="";
+                let t2="";
+                let t3="";
+                let t4="";
+                let t5="";
+               
+                 t0=taxvalarr[0];
+                 t1=taxvalarr[1];
+                 t2=taxvalarr[2];
+                 t3=taxvalarr[3];
+                 t4=taxvalarr[4];
+                 t5=taxvalarr[5];
+                if (typeof t0 === "undefined") {t0="";}
+                 if (typeof t1 === "undefined") {t1="";}
+                  if (typeof t2 === "undefined") {t2="";}
+                   if (typeof t3 === "undefined") {t3="";}
+                    if (typeof t4 === "undefined") {t4="";}
+                     if (typeof t5 === "undefined") {t5="";}
+
+                var data = document.getElementById('tablerow');
+                data.innerHTML +=' <tr><td class="td"><div id= "drag' + count + '" onclick="calc();" class="redips-drag redips-row redips-clone"'
+                +'style="cursor: move;"><span>'+ count +''
+                +'</span></div></td><td class="td">'
+                +'<div>'+projects+'</div></td>'
+                +'<td class="td"><div id= "redipsdrag' + count + '" class="redips-drag blue redips-clone" style="cursor: move;">'+ t0 +'</div></td>'  
+                +'<td class="td"><div id= "redipsdrag' + count + '" class="redips-drag blue redips-clone" style="cursor: move;">'+ t1 +'</div></td>'
+                +'<td class="td"><div id= "redipsdrag' + count + '" class="redips-drag blue redips-clone" style="cursor: move;">'+ t2 +'</div></td>'
+                +'<td class="td"><div id= "redipsdrag' + count + '" class="redips-drag blue redips-clone" style="cursor: move;">'+ t3 +'</div></td>'
+                +'<td class="td"><div id= "redipsdrag' + count + '" class="redips-drag blue redips-clone" style="cursor: move;">'+ t4 +'</div></td>'
+                +'<td class="td"><div id= "redipsdrag' + count + '" class="redips-drag blue redips-clone" style="cursor: move;">'+ t5 +''
+                +'</div></td></tr>';
+                taxvalarr = [];
+                t0="";
+                t1="";
+                t2="";
+                t3="";
+                t4="";
+                t5="";
+                }
+
+            }
+
+            var redipsInit;
+            redipsInit = function () {
+                debugger;
+
+                var rd = REDIPS.drag,
+                    msg;
+
+                rd.init();
+                rd.hover.colorTd = '#FFCFAE';
+                rd.hover.colorTr = '#9BB3DA';
+                rd.hover.borderTd = '2px solid #32568E';
+                rd.hover.borderTr = '2px solid #32568E';
+                rd.rowDropMode = 'after';
+                rd.event.rowClicked = function () {
+                    //alert("Clicked");
+                    var el = rd.obj;
+                    el = rd.findParent('TABLE', el);
+                    msg = el.getElementsByTagName('span')[0];
+                    //msg.innerHTML = 'Clicked';
+                };
+
+                rd.event.rowMoved = function () {
+                    rd.rowOpacity(rd.obj, 85);
+                    rd.rowOpacity(rd.objOld, 20, 'White');
+                    //msg.innerHTML = 'Moved';
+                };
+
+
+                rd.event.rowNotMoved = function () {
+                    //msg.innerHTML = 'Not moved';
+                };
+
+                rd.event.rowDropped = function () {
+                    
+                    //msg.innerHTML = 'Dropped';
+                };
+
+                rd.event.dropped = function (s) {
+
+                    //console.log(s);
+                    //msg.innerHTML = 'Dropped';
+                };
+
+
+
+                rd.event.rowDroppedSource = function () {
+                    rd.rowOpacity(rd.objOld, 100);
+                    //msg.innerHTML = 'Dropped to the source';
+                };
+
+                rd.event.rowChanged = function () {
+                    var pos = rd.getPosition();
+                    //msg.innerHTML = 'Changed: ' + pos[0] + ' ' + pos[1];
+                };
+            };
+
+
+            if (window.addEventListener) {
+                window.addEventListener('load', redipsInit, false);
+            }
+            else if (window.attachEvent) {
+                window.attachEvent('onload', redipsInit);
+            }
+
+
+            var headerInit,
+                redipsURL = redipsURL || '/javascript/drag-and-drop-table-content/',
+                indexURL = indexURL || '../';
+
+            headerInit = function () {
+                var header = document.createElement('div'),
+                    title = document.title;
+
+                document.body.insertBefore(header, document.body.firstChild);
+
+                header.innerHTML = '<div style="background-color:#eee;padding:10px;text-align:center;font-size:20px;font-weight:bold">' + title + '</div>' +
+                    '<div style="float:left;width:50%;padding-left:10px"><a href="' + indexURL + '">Index</a></div>' +
+                    '<div style="text-align:right;padding-right:10px;margin-bottom:10px"><a href="http://www.redips.net' + redipsURL + '">www.redips.net</a></div>';
+            };
+            redipsInit();
+            if (window.addEventListener) {
+                window.addEventListener('load', headerInit, false);
+            }
+            else if (window.attachEvent) {
+                window.attachEvent('onload', headerInit);
+            }

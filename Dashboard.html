@@ -1,0 +1,480 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>CPT</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <!-- Font CSS -->
+        <link rel="stylesheet" href="css/Roboto.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+         <!-- <link rel="stylesheet" href="css/w3css/w3.css"> -->
+        
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar" class="active">
+                <div class="sidebar-header">
+                    <img src="images/LOGO.png">
+                </div>
+                <ul class="list-unstyled components">
+                    
+                    <li class="active">
+                        <a href="Dashboard.html"><i class="fas fa-tv"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-sitemap"></i>Taxonomy</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-search"></i>Sourcing</a>
+                    </li>
+                    <li>
+                        <a href="Schema/SchemaModule.html"><i class="fas fa-file-alt"></i>Schema</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-database"></i>Data</a>
+                    </li>
+                    <li>
+                        <a href="employee.html"><i class="fas fa-database"></i>Employee Skills</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Page Content Holder -->
+            <div class="page">
+                <nav class="navbar navbar-default">
+                  <div class="container-fluid">
+                      <div class="navbar-header">
+                          <div class="logo">
+                              <button id="sidebarCollapse" class="btn">
+                                  <i class="fas fa-align-left"></i>
+                                  <span>Taxonomy</span>
+                              </button>
+                          </div>
+                          <button class="btn" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                              <i class="fas fa-power-off" alt="Logout"></i>
+                          </button>
+                      </div>
+                  </div>
+              </nav>
+                <section class="page-content" id="content">
+                    <div class="subheader">
+                        <h4 class="mb-0">Dashboard</h4>
+                        <button id="add" class="btn add-pro" data-toggle="tooltip" data-placement="bottom" title="Add Project">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="container-fluid content dashboard">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 text-center">
+                                <input type="text" id="searchid" class="search" placeholder="Search..." autofocus="true">
+                            </div>
+                        </div>
+                        <div id="noresult" class="row align-items-center" style="display:none;height:60%;color: #bbbbbb;"><div class="col-md-12 text-center"><h4><i class="fas fa-search"></i>&nbsp;No results matching</h4></div></div>
+                        <div id="demo" class="row mt-1"></div>
+                    </div>
+                    <div class="right-sidebar-overlay"></div>
+                    <div class="right-sidebar-content">
+                        <div class="right-sidebar-close">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <h3>Add Project</h3>
+                        <label>Project Name</label>
+                        <input type="text" id="Addprojname" name="">
+                        <label>Client Name <button class="ml-1 btn btn-link" onclick="newclient()"><i class="fas fa-plus"></i></button></label>
+                        <div id="add-client" class="add-synonym mb-2" style="display: none;">
+                            <div class="input-group  d-flex justify-content-between align-items-center">
+                              <input id="myText" type="text" value="" class="form-control m-0" autofocus="true">
+                              <div class="input-group-append">
+                                <button class="btn" type="" onclick="myFunction()" value="">Add</button>
+                              </div>
+                            </div>
+                        </div>
+                        <!--<input type="text" id="Clientname" name="">-->
+                        <select id="Clientname"></select>
+                         
+                        <label>Taxonomy Level</label>
+                        <select id="Taxonomylvl">
+                            <option>T1</option>
+                            <option>T2</option>
+                            <option>T3</option>
+                            <option>T4</option>
+                            <option>T5</option>
+                            <option>T6</option>
+                        </select>
+						<label>Overall Complexity</label>
+                        <select id="complexity">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                                                    </select>
+													<ul>
+<li>
+Sourcing: <input type="checkbox" id="myCheck"  onclick="myFunction1()">
+
+<select id="text1" style="display:none">
+<option>null</option>
+<option>1</option>
+
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+
+</select>
+
+</li>
+<li>
+Texonomy: <input type="checkbox" id="myCheck1"  onclick="myFunction2()">
+
+<select id="text2" style="display:none">
+<option>null</option>
+<option>1</option>
+
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+
+</select>
+</li>
+<li>
+Schema: <input type="checkbox" id="myCheck2"  onclick="myFunction3()">
+
+<select id="text3" style="display:none">
+<option>null</option>
+<option>1</option>
+
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+
+</select>
+</li>
+<li>
+
+Data: <input type="checkbox" id="myCheck3"  onclick="myFunction4()">
+
+<select id="text4" style="display:none">
+<option>null</option>
+<option>1</option>
+
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+
+</select>
+</li>
+</ul>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-default" onclick="addproj()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="overlay" id="loading">
+                        <img src="images/loader.gif">
+                  </div>
+                <footer>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Design by <a href="https://www.altiussolution.com/" target="blank">Altius Technology Solutions</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <!-- <div class="overlay"></div> -->
+        
+        <script src="js/W3/w3data.js"></script>
+        <!-- jQuery CDN -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript">
+            w3IncludeHTML();
+        </script>
+        <script src="js/baseurl.js"></script>
+        <script src="js/custom.js"></script>       
+       
+
+        
+        <script type="text/javascript">
+          function click(){
+            debugger;
+        }
+         
+             var GlobalURl="";
+             var read = "";
+            window.onload = function () {
+             GlobalURl= GlobalURLset();
+                loadDoc();
+            };
+            function loadDoc() {
+                
+            var url = GlobalURl+"/projects";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        //console.log(response);
+                        loadDoc2(response);
+                    } else {
+                        console.error(xhr.statusText);
+                    }
+                }
+            };
+            xhr.onerror = function (e) {
+                console.error(xhr.statusText);
+            };
+            xhr.send();
+        }
+
+        function addproj()
+        {
+		debugger;
+          var projname =document.getElementById("Addprojname").value;
+          var cliname =document.getElementById("Clientname").value;
+          var  txlvl  = document.getElementById("Taxonomylvl").value;
+		  var complexity=document.getElementById("complexity").value;
+		  var sourcing =document.getElementById("text1").value;
+		  var texonomy =document.getElementById("text2").value;
+		  var schema =document.getElementById("text3").value;
+		  var data =document.getElementById("text4").value;
+          //alert(projname+" : "+cliname+" : "+txlvl);
+          var data = {
+                        "name" : projname,
+                        "max_tax_level" : txlvl,
+                        "client_id" :cliname,
+						"complexity":complexity,
+						"process":{
+						"sourcing":sourcing,
+						"texonomy":texonomy,
+						"schema":schema,
+						"data":data
+						}
+               }
+               
+         console.log(data); 
+         var xhr = new XMLHttpRequest();
+         var url = GlobalURl+'/projects';
+         xhr.open("POST", url, true);
+         xhr.setRequestHeader("Content-Type", "application/json");
+         xhr.onreadystatechange = function () {
+         if (xhr.readyState === 4) {
+           debugger;
+        var json = JSON.parse(xhr.responseText);
+        console.log(xhr.responseText);
+        location.reload();
+        //window.location.reload(true);
+        
+        
+        }
+       };
+       
+        let jsondata = JSON.stringify(data);
+        console.log(jsondata);
+        xhr.send(jsondata);
+         
+        
+        }
+        
+        
+        function loadDoc2(read)
+        {
+          debugger;
+            var loading = document.getElementById("loading");
+            loading.style.display = "flex";
+            for (var prop in read) {
+
+                var count = parseInt(prop) + 1;
+                var item = read[prop];
+                var id = item['id'];
+                var name = item['name'];
+                //alert(id);
+                var data = document.getElementById('demo');
+                data.innerHTML +='<div class="col-20 mt-4"><div class="card projects"><div class="card-body"><span class="card-index">'+ count +'</span>'
+                +'<h5>' + name + '</h5><p><a href="Taxonomy/Upload.html?project_id='+id+'">Taxonomy</a>'
+                +'<a href="Sourcing/UploadSourcing.html?project_id='+id+'">Sourcing</a>'
+                +'<a href="#">Schema</a>'
+                +'<a href="#">Data</a></p></div></div></div>';
+                //document.getElementById('demo').appendChild(data);
+            }
+               var data = document.getElementById('demo');
+               data.innerHTML +='<div class="col-20 mt-4"><div id="add" class="card add-project"><div class="card-body text-center">'
+               +'<button class="btn"><i class="fas fa-plus-circle"></i></button> <p>Add New Project</p></div> </div> </div>';
+
+               loading.style.display = "none";
+           // console.log(data);
+        }
+
+
+
+        
+            document.getElementById("searchid").onkeyup = function () {
+              debugger;
+
+                var matcher = new RegExp(document.getElementById("searchid").value, "gi");
+               
+                for (var i = 0; i < document.getElementsByClassName("col-20 mt-4").length; i++)
+                { debugger;
+                    var dal = document.getElementsByClassName("card-body")[i].children[1].innerHTML;
+
+                    if (matcher.test(document.getElementsByClassName("card-body")[i].children[1].innerHTML))
+                    {
+                       debugger;
+                         
+                        document.getElementsByClassName("col-20 mt-4")[i].style.display = "block";
+                        document.getElementById("noresult").style.display = "none"; 
+                    }
+                    else
+                    {
+                       debugger;
+                        document.getElementsByClassName("col-20 mt-4")[i].style.display = "none";
+                        document.getElementById("noresult").style.display = "flex"; 
+                    }
+                    
+                }
+            }
+             $(document).on("click", "#add", function(){
+                //$('.right-sidebar-content').toggleClass('right-sidebar-open');
+                //$('.right-sidebar-overlay').toggleClass('overlay-active');
+                  Getclientids();
+                });
+                 function Getclientids()
+                 {
+                   
+                   document.getElementById("Addprojname").value="";
+                   document.getElementById("Clientname").options.length = 0;
+                     var url = GlobalURl+"/clients";
+                   var xhr = new XMLHttpRequest();
+                 xhr.open("GET", url, true);
+                  xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        console.log(response);
+                        var optionsAsString = "";
+                        
+                for (var i in response) {
+                //alert('check');
+                var lead = response[i];
+                let  id = lead['id'];
+                var  name =lead['name']
+                //alert(id +"/"+name);
+                var option = document.createElement("option");
+                    option.text =name ;
+                    option.value = id;
+                   var select = document.getElementById("Clientname");
+                   select.appendChild(option);
+                  
+               }
+                    } else {
+                        console.error(xhr.statusText);
+                    }
+                }
+            };
+            xhr.onerror = function (e) {
+                console.error(xhr.statusText);
+            };
+            xhr.send();
+        }
+
+        function myFunction() {
+
+              var x = document.getElementById("myText");
+              var currentVal = x.value;
+              var obj ={"client": { "name":currentVal}};
+              console.log(obj);
+              var xhr = new XMLHttpRequest();
+              var url = GlobalURl+'/clients';
+              xhr.open("POST", url, true);
+              xhr.setRequestHeader("Content-Type", "application/json");
+              xhr.onreadystatechange = function () {
+             if (xhr.readyState === 4) {
+             var json = JSON.parse(xhr.responseText);
+             document.getElementById("myText").value ='';
+             Getclientids();
+        
+             }
+       };
+       
+        let jsondata1 = JSON.stringify(obj);
+        xhr.send(jsondata1);
+        var add = document.getElementById("add-client");
+         if (add.style.display === "none") {
+                    add.style.display = "block";
+          } else {
+                    add.style.display = "none";
+          }
+            }
+        function newclient() {
+            var x = document.getElementById("add-client");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+            function myFunction1() {
+    var checkBox = document.getElementById("myCheck");
+    var text = document.getElementById("text1");
+    if (checkBox.checked == true){
+        text.style.display = "block";
+    } else {
+       text.style.display = "none";
+    }
+}
+function myFunction2() {
+    var checkBox = document.getElementById("myCheck1");
+    var text = document.getElementById("text2");
+    if (checkBox.checked == true){
+        text.style.display = "block";
+    } else {
+       text.style.display = "none";
+    }
+}
+function myFunction3() {
+    var checkBox = document.getElementById("myCheck2");
+    var text = document.getElementById("text3");
+    if (checkBox.checked == true){
+        text.style.display = "block";
+    } else {
+       text.style.display = "none";
+    }
+}
+function myFunction4() {
+    var checkBox = document.getElementById("myCheck3");
+    var text = document.getElementById("text4");
+    if (checkBox.checked == true){
+        text.style.display = "block";
+    } else {
+       text.style.display = "none";
+    }
+}
+        </script>
+        
+      </body>
+</html>

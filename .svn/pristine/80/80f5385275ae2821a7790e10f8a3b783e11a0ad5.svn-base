@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>CPT</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <!-- Font CSS -->
+        <link rel="stylesheet" href="css/montserrat.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar" class="active">
+                <div class="sidebar-header">
+                    <img src="images/LOGO.png">
+                </div>
+                <ul class="list-unstyled components">
+                    <!--                     <li >
+                                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+                                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                                            <li><a href="#">Home 1</a></li>
+                                            <li><a href="#">Home 2</a></li>
+                                            <li><a href="#">Home 3</a></li>
+                                        </ul>
+                                    </li> -->
+                    <li class="active">
+                        <a href="Dashboard.html"><i class="fas fa-tv"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-sitemap"></i>Taxonomy</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-search"></i>Sourcing</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-file-alt"></i>Schema</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-database"></i>Data</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Page Content Holder -->
+            <div class="page">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <div class="logo">
+                                <button id="sidebarCollapse" class="btn">
+                                    <i class="fas fa-align-left"></i>
+                                    <span>Dashboard</span>
+                                </button>
+                            </div>
+                            <button class="btn" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                                <i class="fas fa-power-off" alt="Logout"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+                <div w3-include-html="Dashboard.html"></div>
+
+                <footer>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Design by <a href="https://www.altiussolution.com/" target="blank">Altius Technology Solutions</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="overlay"></div>
+
+        <!-- jQuery CDN -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="js/Dragjs/redips-drag-min.js"></script>
+        <script src="js/w3/w3data.js"></script>
+        <script src="js/custom.js"></script>
+       <script>
+            w3IncludeHTML();
+       </script>		
+    </body>
+</html>

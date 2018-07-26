@@ -1,0 +1,642 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>CPT</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <!-- Font CSS -->
+        <link rel="stylesheet" href="css/Roboto.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <img src="images/LOGO.png">
+                </div>
+                <ul class="list-unstyled components">
+                    <!--                     <li >
+                                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+                                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                                            <li><a href="#">Home 1</a></li>
+                                            <li><a href="#">Home 2</a></li>
+                                            <li><a href="#">Home 3</a></li>
+                                        </ul>
+                                    </li> -->
+                    <li class="active">
+                        <a href="Dashboard.html"><i class="fas fa-tv"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-sitemap"></i>Taxonomy</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-search"></i>Sourcing</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-file-alt"></i>Schema</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-database"></i>Data</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Page Content Holder -->
+            <div class="page active">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <div class="logo">
+                                <button id="sidebarCollapse" class="btn">
+                                    <i class="fas fa-align-left"></i>
+                                    <span id="titlename">Taxonomy</span>
+                                </button>
+                            </div>
+                            <button class="btn" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                                <i class="fas fa-power-off" alt="Logout"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+                <section class="page-content">
+                    <div class="subheader">
+                        <h4 class="mb-0">Taxonomy Tree Creation</h4>
+                        <p>
+                            <label>No. Of SKUs (Assigned / Total): <span>0 / 5000</span></label>
+                        </p>
+                        <a href="Recommended-sku-create.html">
+                            <button class="btn btn-light">
+                                <i class="fas fa-arrow-left"></i>
+                                <span>Back</span>
+                            </button>
+                        </a>                        
+                    </div>
+                    <div class="container-fluid content">
+                        <div id="redips-drag" class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <nav class="card_title">
+                                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Knowledge Base<span id="skucount"></span></a>
+                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Input Reference</a>
+                                  </div>
+                                  <input id="myInput" type="text" placeholder="Search" onkeyup="searchbox()">
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                    <div class="card table-scroll table-drag">
+                                        <div class="card-body">
+                                            <table id="lefttable" class="table">
+                                                <thead>
+                                                    <tr class="rd">
+                                                        <th class="th">#</th>
+                                                        <th class="th">Project</th>
+                                                        <th class="th">T1</th>
+                                                        <th class="th">T2</th>
+                                                        <th class="th">T3</th>
+                                                        <th class="th">T4</th>
+                                                        <th class="th">T5</th>
+                                                        <th class="th">T6</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tablerow">
+                                                    
+                                                    <tr id="noresultleft" style="display:none"><td>No results matching</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                    <div class="card table-scroll table-ref">
+                                        <div class="card-body">
+                                            <table class="table" id="inputtable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th class="th">Supplier Part No</th>
+                                                        <th class="th">Supplier Name</th>
+                                                        <th class="th">B&F ERP/Web Description</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="inputrow">
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <h3 class="card_title" id="projectname">
+                                    <span id="skucount1">0</span>
+                                    <span class="float-right d-flex">
+                                        <button id="addRow" class="btn btn-link" onclick="addrowclick()">Add new</button>
+                                        <button class="btn btn-link" onclick="deleteallrow()">Delete all</button>
+                                    </span>
+                                </h3>
+                                <div class="card table-scroll table-drop">
+                                    <div class="card-body">
+                                        <table id="rigttable" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="th d-none">#</th>
+                                                    <th class="th">T1</th>
+                                                    <th class="th">T2</th>
+                                                    <th class="th">T3</th>
+                                                    <th class="th">T4</th>
+                                                    <th class="th">T5</th>
+                                                    <th class="th">T6</th>
+                                                    <th class="th"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="myTable">
+                                                <tr>
+                                                    <td class="td d-none">1</td>
+                                                    <td><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td>
+                                                    <td><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td>
+                                                    <td><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td>
+                                                    <td><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td>
+                                                    <td><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td>
+                                                    <td><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td>
+                                                    <td><span onclick="deleterow(this)"><i class="fas fa-trash-alt"></i></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tax-cnt d-flex justify-content-end align-items-center">
+                                    <!-- <p>Total Taxonomy: <span>200</span></p> -->
+                                    <span>
+                                        <button class="btn btn-default" onclick="saveonly()">Save</button>
+                                        <!-- <a href="Recommended-sku.html"> --><button class="btn btn-default" onclick="savecontinue()">Save & Continue</button><!-- </a> -->
+                                        <button class="btn btn-default"><a href="Assign-Taxonomy.html">Assign</a></button>
+                                    </span>
+                                </div>
+                                <div id="snackbar">Taxonomy Saved Successfully</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overlay" id="loading">
+                        <img src="./images/loader.gif">
+                    </div>
+                </section>
+                <footer>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Design by <a href="https://www.altiussolution.com/" target="blank">Altius Technology Solutions</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <!-- jQuery CDN -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="js/Dragjs/redips-drag-min.js"></script>
+        <script src="js/Taxonomy/taxonomy.js"></script>
+        <script src="js/Hilitor.js"></script>
+        
+        <script type="text/javascript">
+           var skucount1="";
+            var GlobalURl="";
+            var read = "";
+        window.onload = function () {
+           // debugger;
+		   GlobalURl= GlobalURLset();
+            var loading = document.getElementById("loading");
+            loading.style.display = "flex";
+            inputget();
+            loadDoc();
+            taxonomyload();
+            debugger;
+            //document.getElementById("skucount1").innerHTML = skucount1.toString();
+
+        };
+
+        function savecontinue()
+        {
+         debugger;
+        var rowarr1=[];
+        var rowarr=[];
+        var rowid="";
+        var myTab = document.getElementById('myTable');
+
+        // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+        for (i = 1; i < myTab.rows.length; i++) {
+            debugger;
+            // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+            var objCells = myTab.rows.item(i).cells;
+
+            // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
+            for (var j = 0; j < 6; j++) {
+                var rightrowval=objCells.item(j).innerText;
+                if(rightrowval === "Newrow")
+                {
+                    if(j == 0)
+                    {
+                        rowid="null";
+                    }
+                }
+                else
+                {
+                    if(j == 0)
+                    {
+                        rowid=objCells.item(0).innerText;
+                    }
+                    else
+                    {
+                        var rowval =  objCells.item(j).innerText; 
+                        rowarr.push(rowval); 
+                    }
+                }
+            }
+
+            var strings = rowarr;
+            rowarr=[];
+            rowarr1.push({id:rowid,data:strings});
+            rowid="";
+            //rowarr1.push(strings);
+          
+        }
+         saveandcon(rowarr1);
+
+        }
+
+        function saveonly()
+        {
+        debugger;
+        var rowarr1=[];
+        var rowarr=[];
+        var rowid="";
+        var myTab = document.getElementById('myTable');
+
+        // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+        for (i = 1; i < myTab.rows.length; i++) {
+            debugger;
+            // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+            var objCells = myTab.rows.item(i).cells;
+
+            // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
+            for (var j = 0; j < 6; j++) {
+                var rightrowval=objCells.item(j).innerText;
+                if(rightrowval === "Newrow")
+                {
+                    if(j == 0)
+                    {
+                        rowid="null";
+                    }
+                }
+                else
+                {
+                    if(j == 0)
+                    {
+                        rowid=objCells.item(0).innerText;
+                    }
+                    else
+                    {
+                        var rowval =  objCells.item(j).innerText; 
+                        rowarr.push(rowval); 
+                    }
+                }
+            }
+
+            var strings = rowarr;
+            rowarr=[];
+            rowarr1.push({id:rowid,data:strings});
+            rowid="";
+            //rowarr1.push(strings);
+          
+        }
+         save(rowarr1);
+
+    }
+
+
+       function saveandcon(rowarr1)
+        {
+            debugger;
+            var url = GlobalURl+"/taxonomy_creation";
+                //var url = "http://192.168.1.58:4040/projects/project_headers_duplicate_count";
+                var xhr = new XMLHttpRequest;
+                xhr.open("POST", url , true);
+                xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                    	//debugger;
+                         console.log(xhr.responseText);
+                         var responsedata=xhr.responseText;
+                         localStorage.setItem('Mytaxdata', responsedata);
+                         window.location="Recommended-sku-create.html";
+                    }
+                };
+                var id=localStorage.getItem('MyId');
+               
+                var data = JSON.stringify({"project_id":id,"taxonomy":rowarr1});
+                console.log(data);
+                xhr.send(data);
+        }
+        function save(rowarr1)
+        {
+            debugger;
+            var url = GlobalURl+"/taxonomy_creation";
+                //var url = "http://192.168.1.58:4040/projects/project_headers_duplicate_count";
+                var xhr = new XMLHttpRequest;
+                xhr.open("POST", url , true);
+                xhr.setRequestHeader('Content-type', 'application/json');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                    	//debugger;
+                         console.log(xhr.responseText);
+                         var responsedata=xhr.responseText;
+                            var x = document.getElementById("snackbar");
+                            x.className = "show";
+                            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                        // alert(xhr.responseText);
+                         localStorage.setItem('Mytaxdata', responsedata);
+                         //window.location="Assign-Taxonomy.html";
+                    }
+                };
+                var id=localStorage.getItem('MyId');
+               
+                var data = JSON.stringify({"project_id":id,"taxonomy":rowarr1});
+                //alert(data);
+                console.log(data);
+                xhr.send(data);
+        }
+
+
+        function inputget()
+        {
+            var id=localStorage.getItem('MyId');
+            var url = GlobalURl+"/projects/input_file?project_id="+id;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        
+                        var response = JSON.parse(xhr.responseText);
+                        console.log(response);
+                        //console.log(response);
+                        inputreferenceload(response);
+                    } else {
+                        console.error(xhr.statusText);
+                    }
+                }
+            };
+            xhr.onerror = function (e) {
+                console.error(xhr.statusText);
+            };
+            xhr.send();
+
+        }
+
+        function inputreferenceload(inputdata)
+        {
+             for (var prop in inputdata)
+             {
+                var count = parseInt(prop) + 1;
+                var inputrowdata = inputdata[prop];
+                var partnumber=inputrowdata['Supplier part no.'];
+                var suppliername=inputrowdata['Supplier Name'];
+                var description=inputrowdata['B&F ERP/Web Description'];
+
+                var data = document.getElementById('inputrow');
+                data.innerHTML +='<tr><td><span>'+count+'</span></td><td>'+partnumber+'</td><td>'+suppliername+'</td><td>'+description+'</td></tr>';
+
+             }
+        }
+        function loadDoc() {
+            debugger;
+            var taxonval=localStorage.getItem('Taxon');
+            loadDoc2(taxonval);
+            redipsInit();
+           
+            var keywords = JSON.parse(taxonval);
+            keywords = keywords["keywords"];
+            var keyval = keywords.join(', ');
+            var myHilitor = new Hilitor("lefttable");
+            myHilitor.apply(keyval);
+        }
+
+        function taxonomyload()
+        {
+        	//debugger;
+            var id=localStorage.getItem('MyId');
+        	var url = GlobalURl+"/project_taxonomy_list?project_id="+id;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        
+                        var response = JSON.parse(xhr.responseText);
+                        console.log(response);
+                        //console.log(response);
+                        //debugger;
+                        taxonomyloadbind(response);
+                    } else {
+                        console.error(xhr.statusText);
+                    }
+                }
+            };
+            xhr.onerror = function (e) {
+                console.error(xhr.statusText);
+            };
+            xhr.send();
+
+        }
+         function taxonomyloadbind(taxonomyloadres)
+         {
+         	debugger;
+         	//var taxores= JSON.parse(taxonomyloadres);
+            skucount1=taxonomyloadres.length;
+         	var righttaxvalarr=[];
+         	for (var prop in taxonomyloadres)
+         	{
+         		//debugger;
+         		var count = parseInt(prop) + 1;
+         		var rowid=taxonomyloadres[prop].id;
+                var item = taxonomyloadres[prop].tree;
+                for (var tax in item)
+                {
+                	var righttaxval = item[tax];
+                	righttaxvalarr.push(righttaxval);
+
+                }
+                var data = document.getElementById('myTable');
+                data.innerHTML +='<tr><td class="td d-none"><div class="redips-drag redips-row">'+rowid+'</div></td><td class="td">'
+                +'<div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+righttaxvalarr[0]+'</div></td>'
+                +'<td class="td"><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+righttaxvalarr[1]+'</div></td>'
+                +'<td class="td"><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+righttaxvalarr[2]+'</div></td>'
+                +'<td class="td"><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+righttaxvalarr[3]+'</div></td>'
+                +'<td class="td"><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+righttaxvalarr[4]+'</div></td>'
+                +'<td class="td"><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>'+righttaxvalarr[5]+'</div></td>'
+                +'<td class="td"><span onclick="deleterow('+rowid+',this)"><i class="fas fa-trash-alt"></i></span></td></tr>';
+                righttaxvalarr = [];
+         	}
+         	loading.style.display = "none";
+         	//window.location="Recommended-sku-create.html";
+             
+           
+
+         }
+
+
+        function loadDoc2(read)
+        {
+            debugger;
+             var taxvalarr=[];
+            
+            read= JSON.parse(read);
+            var projectname=read["project_name"]
+            document.getElementById("projectname").innerHTML = projectname.toString();
+            var readdata = read["result"];
+            var skucount=readdata.length;
+            document.getElementById("skucount").innerHTML = skucount.toString();
+
+            for (var prop in readdata) {
+               
+                var count = parseInt(prop) + 1;
+                var item = readdata[prop];
+                var projects=item.project.name;
+                var taxonomylisi=item.taxonomy;
+                for (var tax in taxonomylisi)
+                {
+                    //debugger;
+                    var taxval = taxonomylisi[tax].name;
+                   /* if (taxval === undefined) {
+                         taxval="";
+                      }*/
+
+                    taxvalarr.push(taxval);
+
+                }
+
+                var data = document.getElementById('tablerow');
+                data.innerHTML +=' <tr><td class="td"><div id= "drag' + count + '" onclick="calc();" class="redips-drag redips-row redips-clone"'
+                +'style="cursor: move;"><span>'+ count +''
+                +'</span></div></td><td class="td">'
+                +'<div>'+projects+'</div></td>'
+                +'<td class="td"><div id= "redipsdrag' + count + '" class="redips-drag blue redips-clone" style="cursor: move;">'+ taxvalarr[0] +'</div></td>'  
+                +'<td class="td"><div id= "redipsdrag' + count + '" class="redips-drag blue redips-clone" style="cursor: move;">'+ taxvalarr[1] +'</div></td>'
+                +'<td class="td"><div id= "redipsdrag' + count + '" class="redips-drag blue redips-clone" style="cursor: move;">'+ taxvalarr[2] +'</div></td>'
+                +'<td class="td"><div id= "redipsdrag' + count + '" class="redips-drag blue redips-clone" style="cursor: move;">'+ taxvalarr[3] +'</div></td>'
+                +'<td class="td"><div id= "redipsdrag' + count + '" class="redips-drag blue redips-clone" style="cursor: move;">'+ taxvalarr[4] +'</div></td>'
+                +'<td class="td"><div id= "redipsdrag' + count + '" class="redips-drag blue redips-clone" style="cursor: move;">'+ taxvalarr[5] +''
+                +'</div></td></tr>';
+                 taxvalarr = [];
+                }
+
+            }
+
+            var redipsInit;
+            redipsInit = function () {
+
+                var rd = REDIPS.drag,
+                    msg;
+
+                rd.init();
+                rd.hover.colorTd = '#FFCFAE';
+                rd.hover.colorTr = '#9BB3DA';
+                rd.hover.borderTd = '2px solid #32568E';
+                rd.hover.borderTr = '2px solid #32568E';
+                rd.rowDropMode = 'after';
+                rd.event.rowClicked = function () {
+                    //alert("Clicked");
+                    var el = rd.obj;
+                    el = rd.findParent('TABLE', el);
+                    msg = el.getElementsByTagName('span')[0];
+                    //msg.innerHTML = 'Clicked';
+                };
+
+                rd.event.rowMoved = function () {
+                    rd.rowOpacity(rd.obj, 85);
+                    rd.rowOpacity(rd.objOld, 20, 'White');
+                    //msg.innerHTML = 'Moved';
+                };
+
+
+                rd.event.rowNotMoved = function () {
+                    //msg.innerHTML = 'Not moved';
+                };
+
+                rd.event.rowDropped = function () {
+                    
+                    //msg.innerHTML = 'Dropped';
+                };
+
+                rd.event.dropped = function (s) {
+
+                    //console.log(s);
+                    //msg.innerHTML = 'Dropped';
+                };
+
+
+
+                rd.event.rowDroppedSource = function () {
+                    rd.rowOpacity(rd.objOld, 100);
+                    //msg.innerHTML = 'Dropped to the source';
+                };
+
+                rd.event.rowChanged = function () {
+                    var pos = rd.getPosition();
+                    //msg.innerHTML = 'Changed: ' + pos[0] + ' ' + pos[1];
+                };
+            };
+
+
+            if (window.addEventListener) {
+                window.addEventListener('load', redipsInit, false);
+            }
+            else if (window.attachEvent) {
+                window.attachEvent('onload', redipsInit);
+            }
+
+
+            var headerInit,
+                redipsURL = redipsURL || '/javascript/drag-and-drop-table-content/',
+                indexURL = indexURL || '../';
+
+            headerInit = function () {
+                var header = document.createElement('div'),
+                    title = document.title;
+
+                document.body.insertBefore(header, document.body.firstChild);
+
+                header.innerHTML = '<div style="background-color:#eee;padding:10px;text-align:center;font-size:20px;font-weight:bold">' + title + '</div>' +
+                    '<div style="float:left;width:50%;padding-left:10px"><a href="' + indexURL + '">Index</a></div>' +
+                    '<div style="text-align:right;padding-right:10px;margin-bottom:10px"><a href="http://www.redips.net' + redipsURL + '">www.redips.net</a></div>';
+            };
+            redipsInit();
+            if (window.addEventListener) {
+                window.addEventListener('load', headerInit, false);
+            }
+            else if (window.attachEvent) {
+                window.attachEvent('onload', headerInit);
+            }
+
+         </script>
+    </body>
+</html>

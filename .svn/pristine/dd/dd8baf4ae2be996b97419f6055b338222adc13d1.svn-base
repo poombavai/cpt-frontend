@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>CPT</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <!-- Font CSS -->
+        <link rel="stylesheet" href="css/Roboto.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <div w3-include-html="sidebar-layout.html"></div>
+            <!-- Page Content Holder -->
+            <div class="page">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <div class="logo">
+                                <button id="sidebarCollapse" class="btn">
+                                    <i class="fas fa-align-left"></i>
+                                    <span>Taxonomy</span>
+                                </button>
+                            </div>
+                            <button class="btn" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                                <i class="fas fa-power-off" alt="Logout"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+                <section class="page-content">
+                    <div class="subheader">
+                        <div class="stepwizard">
+                            <div class="stepwizard-row setup-panel">
+                                <div class="stepwizard-step">
+                                    <a href="#step-1" class="btn btn-danger btn-circle step-complete">1</a>
+                                    <p>Upload your file</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-2" class="btn btn-danger btn-circle active">2</a>
+                                    <p>Choose SKU's Column</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-3" class="btn btn-danger btn-circle" disabled="disabled">3</a>
+                                    <p>Recommended SKU's</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-3" class="btn btn-danger btn-circle" disabled="disabled">4</a>
+                                    <p>Taxonomy Tree Creation</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-3" class="btn btn-danger btn-circle" disabled="disabled">5</a>
+                                    <p>Assign SKU's</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                     <div class="subheader">
+                        <h4 class="mb-0">Choose the SKU File Columns</h4>
+                        <p>
+                            <label>No. Of SKUs (Assigned / Total): <span>0 / 5000</span></label>
+                        </p>
+                        <span>
+                            <button class="btn btn-light" onclick="sendid();">
+                                <i class="fas fa-arrow-left"></i>
+                                <span>Back</span>
+                            </button>
+                            <button class="btn btn-light" id="next" onclick="nexthead();">
+                                <span>Next</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </span>
+                    </div> -->
+                    <div class="container-fluid content">
+                        <div class="row mb-3 pb-2 stepper_btn">
+                            <div class=" col-md-12 d-flex align-items-center justify-content-between">
+                                <button class="btn btn-light" onclick="sendid();">
+                                    <i class="fas fa-arrow-left"></i>
+                                    <span>Back</span>
+                                </button>
+                                <button class="btn btn-light" onclick="nexthead()">
+                                    <span>Next</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <!-- <h4 class="title-h4">Choose the SKU File Columns</h4> -->
+                                        <ul class="list-unstyled chs-clmn" id="checkdata">
+                                            <li>
+                                                <span>Select all</span>
+                                                <input type="checkbox" id="All" onClick="Allselect()" name="">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+<!--                                 <div class="row mrgn-top-20">
+                                    <div class="col-md-12 col-sm-12 text-center">
+                                        <a href="Recommended-sku-create.html"><button class="btn btn-default">Next<i class="fas fa-arrow-right"></i></button></a>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                  <div class="overlay" id="loading" style="display:none;">
+                        <img src="./images/loader.gif">
+                  </div>
+                <footer>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Design by <a href="https://www.altiussolution.com/" target="blank">Altius Technology Solutions</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+      
+        <script src="js/W3/w3data.js"></script>
+        <!-- jQuery CDN -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript">
+            w3IncludeHTML();
+        </script>
+        <script src="js/baseurl.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="js/choosefile.js"></script>
+		
+    </body>
+</html>

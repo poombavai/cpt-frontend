@@ -1,0 +1,32 @@
+//////CUSTOM JQUERIES
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+$(document).ready(function () {
+    $("#sidebar, .table-scroll, .created-tax").mCustomScrollbar({
+        theme: "minimal"
+    });
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, .page').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+    $('.right-sidebar-close, .right-sidebar-overlay').on('click', function () {
+        console.log("Clicked");
+        $('.right-sidebar-content').toggleClass('right-sidebar-open');
+        $('.right-sidebar-overlay').toggleClass('overlay-active');
+    });
+
+});
+
+
+function snackbar() {
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function GlobalURLset() {
+    return "http://192.168.1.242:3000";
+}

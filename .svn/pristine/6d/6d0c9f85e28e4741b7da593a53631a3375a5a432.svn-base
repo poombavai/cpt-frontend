@@ -1,0 +1,520 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>CPT</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <!-- Font CSS -->
+        <link rel="stylesheet" href="css/Roboto.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <div w3-include-html="sidebar-layout.html"></div>
+            <!-- Page Content Holder -->
+            <div class="page active">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <div class="logo">
+                                <button id="sidebarCollapse" class="btn">
+                                    <i class="fas fa-align-left"></i>
+                                    <span id="titlename">Taxonomy</span>
+                                </button>
+                            </div>
+                            <button class="btn" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                                <i class="fas fa-power-off" alt="Logout"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+                <section class="page-content">
+                    <div class="subheader">
+                        <div class="stepwizard">
+                            <div class="stepwizard-row setup-panel">
+                                <div class="stepwizard-step">
+                                    <a href="#step-1" class="btn btn-danger btn-circle step-complete">1</a>
+                                    <p>Upload your file</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-2" class="btn btn-danger btn-circle step-complete">2</a>
+                                    <p>Choose SKU's Column</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-3" class="btn btn-danger btn-circle step-complete">3</a>
+                                    <p>Recommended SKU's</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-4" class="btn btn-danger btn-circle active">4</a>
+                                    <p>Taxonomy Tree Creation</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-5" class="btn btn-danger btn-circle" disabled="disabled">5</a>
+                                    <p>Assign SKU's</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                     <div class="subheader">
+                        <h4 class="mb-0">Taxonomy Tree Creation</h4>
+                        <p>
+                            <label>No. Of SKUs (Assigned / Total): <span>100 / 5000</span></label>
+                        </p>
+                        <a href="Recommended-sku.html">
+                            <button class="btn btn-light">
+                                <i class="fas fa-arrow-left"></i>
+                                <span>Back</span>
+                            </button>
+                        </a>                        
+                    </div> -->
+                    <div class="container-fluid content">
+                        <div class="row mb-3 pb-2 stepper_btn">
+                            <div class=" col-md-12 d-flex align-items-center justify-content-between">
+                                <a href="Recommended-sku.html">
+                                  <button class="btn btn-light">
+                                      <i class="fas fa-arrow-left"></i>
+                                      <span>Back</span>
+                                  </button>
+                                </a>
+                                <button class="btn btn-light">
+                                    <span>Assign</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="redips-drag" class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <nav class="card_title">
+                                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Knowledge Base<span>15</span></a>
+                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Input SKUs</a>
+                                  </div>
+                                  <input id="myInput" type="text" placeholder="Search" onkeyup="searchbox()">
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                    <div class="card table-drag">
+                                        <div class="card-body table-scroll">
+                                            <table id="lefttable" class="table">
+                                                <thead>
+                                                    <tr class="rd">
+                                                        <th class="th">#</th>
+                                                        <th class="th">Project</th>
+                                                        <th class="th">T1</th>
+                                                        <th class="th">T2</th>
+                                                        <th class="th">T3</th>
+                                                        <th class="th">T4</th>
+                                                        <th class="th">T5</th>
+                                                        <th class="th">T6</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><div class="redips-drag redips-row redips-clone"><span>1</span></div></td>
+                                                        <td><div data-toggle="tooltip" data-placement="right" title="EU Automation | Trade Tools | Regency Lighting">EU Automation<span class="prjct-count">3</span></div></td>
+                                                        <td><div class="redips-drag blue redips-clone">Abrasives</div></td>
+                                                        <td><div class="redips-drag blue redips-clone">Buffing & Polishing</div></td>
+                                                        <td><div class="redips-drag blue redips-clone">Buffing Compounds</div></td>
+                                                        <td><div class="redips-drag blue redips-clone">Circuit Testers</div></td>
+                                                        <td><div class="redips-drag blue redips-clone">Battery Testers</div></td>
+                                                        <td><div class="redips-drag blue redips-clone">Battery Testers</div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>2</span></div></td>
+                                                        <td class="td"><div>Mektronics</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Supplies</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Exterior</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Battery</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Air Hoses</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Tools & Accessories</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Aligning Tools</div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>3</span></div></td>
+                                                        <td class="td"><div>Border States</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Building & Construction Hardware</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Blind Cords</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broom & Mop Handles</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broom Handles</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Battery</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Cleaning Brushes</div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>4</span></div></td>
+                                                        <td class="td"><div>IDI</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drilling & Threading Tools</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drilling Tools</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broach Drills</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Combination Drills</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Accumulator</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drill Taper Sleeves</div></td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>5</span></div></td>
+                                                        <td class="td"><div>WinSupply</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Abrasives</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Exterior</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Battery</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Air Hoses</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Tools & Accessories</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Aligning Tools</div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>6</span></div></td>
+                                                        <td class="td"><div>Tools and Hardware</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Building & Construction Hardware</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Blind Cords</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broom & Mop Handles</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broom Handles</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Battery</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Cleaning Brushes</div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>7</span></div></td>
+                                                        <td class="td"><div>Thermo Fisher</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drilling & Threading Tools</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drilling Tools</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broach Drills</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Combination Drills</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Battery Testers</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drill Taper Sleeves</div></td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>8</span></div></td>
+                                                        <td class="td"><div>Adex International</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Supplies</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Exterior</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Battery</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Air Hoses</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Tools & Accessories</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Aligning Tools</div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>9</span></div></td>
+                                                        <td class="td"><div>Air Hydro Power</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Building & Construction Hardware</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Blind Cords</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broom & Mop Handles</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broom Handles</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Storage Battery</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Cleaning Brushes</div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>10</span></div></td>
+                                                        <td class="td"><div>Hayley</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drilling & Threading Tools</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drilling Tools</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broach Drills</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Combination Drills</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Battery Testers</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drill Taper Sleeves</div></td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>11</span></div></td>
+                                                        <td class="td"><div>Kempston Control</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Supplies</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Exterior</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Storage Battery</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Air Hoses</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Tools & Accessories</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Aligning Tools</div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>12</span></div></td>
+                                                        <td class="td"><div>Richards Supply</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Building & Construction Hardware</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Blind Cords</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broom & Mop Handles</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broom Handles</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Cell</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Cleaning Brushes</div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>13</span></div></td>
+                                                        <td class="td"><div>Regency Lighting</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drilling & Threading Tools</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drilling Tools</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broach Drills</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Combination Drills</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Battery Testers</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drill Taper Sleeves</div></td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>14</span></div></td>
+                                                        <td class="td"><div>MRO Stop</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drilling & Threading Tools</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drilling Tools</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Broach Drills</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Combination Drills</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Electric Battery</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Drill Taper Sleeves</div></td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td class="td"><div class="redips-drag redips-row redips-clone"><span>15</span></div></td>
+                                                        <td class="td"><div>Trade Tools</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Abrasives</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Exterior</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Electric Battery</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Air Hoses</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Automotive Tools & Accessories</div></td>
+                                                        <td class="td"><div class="redips-drag blue redips-clone">Aligning Tools</div></td>
+                                                    </tr>
+                                                    <tr id="noresultleft" style="display:none"><td>No results matching</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                    <div class="card table-ref">
+                                        <div class="card-body table-scroll">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th class="th">Supplier Part No</th>
+                                                        <th class="th">Supplier Name</th>
+                                                        <th class="th">B&F ERP/Web Description</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><span>1</span></td>
+                                                        <td>TSLR6MP20</td>
+                                                        <td>POWER DC PTY LTD</td>
+                                                        <td>BATTERY TOSHIBA AA ALKALINE   TSLR6MP20</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span>2</span></td>
+                                                        <td>1209</td>
+                                                        <td>TLE ELECTRICAL</td>
+                                                        <td>BATTERY EVEREADY 1209 SUPER H/DUTY</td>
+                                                    </tr>
+													  <tr>
+                                                        <td><span>3</span></td>
+                                                        <td>CA6V</td>
+                                                        <td>POWER DC PTY LTD</td>
+                                                        <td>BATTERY LANTERN 6V SUPER HEAVY DUTY CAMELION 4R25-SP1B</td>
+                                                    </tr>
+													  <tr>
+                                                        <td><span>4</span></td>
+                                                        <td>EN22</td>
+                                                        <td>TLE ELECTRICAL</td>
+                                                        <td>BATTERY ENERGIZER 9V ALKALINE INDUSTRIAL EN22</td>
+                                                    </tr>  <tr>
+                                                        <td><span>5</span></td>
+                                                        <td>A23BP1</td>
+                                                        <td>TLE ELECTRICAL</td>
+                                                        <td>BATTERY ENERGIZER A23 ALKALINE 12V       A23BP</td>
+                                                    </tr>
+													  <tr>
+                                                        <td><span>6</span></td>
+                                                        <td>EN91</td>
+                                                        <td>TLE ELECTRICAL</td>
+                                                        <td>BATTERY ENERGIZER AA ALKALINE IND  EN91</td>
+                                                    </tr>
+													  <tr>
+                                                        <td><span>7</span></td>
+                                                        <td>EN92</td>
+                                                        <td>TLE ELECTRICAL</td>
+                                                        <td>BATTERY ENERGIZER AAA INDUSTRIAL EN92</td>
+                                                    </tr>
+													  <tr>
+                                                        <td><span>8</span></td>
+                                                        <td>BSP-AA</td>
+                                                        <td>ARLEC AUSTRALIA PTY LTD</td>
+                                                        <td>ARLEC BATTERY RECHARGEABLE AA NICAD (PKT 2)    BSPAA</td>
+                                                    </tr>
+													  <tr>
+                                                        <td><span>9</span></td>
+                                                        <td>SCMT70819</td>
+                                                        <td>STANLEY BLACK & DECKER</td>
+                                                        <td>MULTIMETER  MINI SCMT70819</td>
+                                                    </tr>
+													  <tr>
+                                                        <td><span>10</span></td>
+                                                        <td>CTSS154</td>
+                                                        <td>TRIDON AUSTRALIA PTY LTD</td>
+                                                        <td>CABLE TIE S/S 152mm x 5mm  CTSS154</td>
+                                                    </tr>
+													  <tr>
+                                                        <td><span>11</span></td>
+                                                        <td>PE2340CYL</td>
+                                                        <td>PELICAN PRODUCTS AUSTRALIA PTY LTD</td>
+                                                        <td>PELICAN MITYLITE TORCH PLUS 2AA YELLOW PE2340CYL</td>
+                                                    </tr>
+													  <tr>
+                                                        <td><span>12</span></td>
+                                                        <td>SSTTT2</td>
+                                                        <td>CABLE ACCESSORIES (AUST)</td>
+                                                        <td>CABAC S/S CABLE TIE TENSIONER SSTTT2</td>
+                                                    </tr>
+													  <tr>
+                                                        <td><span>13</span></td>
+                                                        <td>TWDYNAMIC520</td>
+                                                        <td>WHITE INTERNATIONAL P/L</td>
+                                                        <td>TELWIN JUMP STARTER 12/24V 75AMP TWDYNAMIC520</td>
+                                                    </tr>
+													<tr>
+                                                        <td><span>14</span></td>
+                                                        <td>CAL70-10</td>
+                                                        <td>CABLE ACCESSORIES (AUST)</td>
+                                                        <td>BRADY LIGHT BEACON ROTARY ROTOLITE RL3000   845605</td>
+                                                    </tr>
+													<tr>
+                                                        <td><span>15</span></td>
+                                                        <td>CAA204</td>
+                                                        <td>ARLEC AUSTRALIA PTY LTD</td>
+                                                        <td>ARLEC CHARGER BATTERY AA WITH 2 BATTERIES  CAA204</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <h3 class="card_title">
+                                    Mektornics
+                                    <span class="float-right d-flex">
+                                        <button id="addRow" class="btn btn-link" onclick="addrowclick()">Add new</button>
+                                        <button class="btn btn-link" onclick="deleteallrow()">Delete all</button>
+                                    </span>
+                                </h3>
+                                <div class="card table-drop">
+                                    <div class="card-body table-scroll">
+                                        <table id="rigttable" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="th">#</th>
+                                                    <th class="th">T1</th>
+                                                    <th class="th">T2</th>
+                                                    <th class="th">T3</th>
+                                                    <th class="th">T4</th>
+                                                    <th class="th">T5</th>
+                                                    <th class="th">T6</th>
+                                                    <th class="th"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="myTable">
+                                                <tr>
+												    <td>1</td>
+                                                    <td class="td"><div onclick="myFunction(this)">Abrasives</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Buffing & Polishing</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Buffing Compounds</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Buffing Wheels</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Grinding Paste</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Burr Sets</div></td>
+													<td><span onclick="deleterow(this)"><i class="fas fa-trash-alt"></i></span></td>
+                                                </tr>
+												<tr>
+												    <td>2</td>
+                                                    <td class="td"><div onclick="myFunction(this)">Automotive Supplies</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Automotive Electrical</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Automotive Lamps & Bulbs</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Battery Testers</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Flashing Lights</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Jump Starters</div></td>
+													<td><span onclick="deleterow(this)"><i class="fas fa-trash-alt"></i></span></td>
+                                                </tr>
+                                               <tr>
+												    <td>3</td>
+                                                    <td class="td"><div onclick="myFunction(this)">Cleaning & Janitorial</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Brooms & Brushwares</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Broom & Mop Handles</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Broom Handles</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Brooms</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Cleaning Brushes</div></td>
+													<td><span onclick="deleterow(this)"><i class="fas fa-trash-alt"></i></span></td>
+                                                </tr>
+                                                <tr>
+												    <td>4</td>
+                                                    <td class="td"><div onclick="myFunction(this)">Drilling & Threading Tools</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Drilling Tools</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">End Mill Sets</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Hand Reamers</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Holesaw Arbor</div></td>
+                                                    <td class="td"><div onclick="myFunction(this)">Holesaw Blades</div></td>
+													<td><span onclick="deleterow(this)"><i class="fas fa-trash-alt"></i></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer tax-cnt text-right">
+                                        <span>
+                                            <button class="btn btn-default" onclick="saveonly()">Save</button>
+                                            <button class="btn btn-default" onclick="savecontinue()">Save & Continue</button>
+                                            <!-- <button class="btn btn-default"><a href="Assign-Taxonomy.html">Assign</a></button> -->
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="tax-cnt d-flex justify-content-between align-items-center">
+                                    <p><!-- Total Taxonomy: <span>200</span> --></p>
+                                    <span>
+                                        <button class="btn btn-default" onclick="snackbar()">Save</button>
+                                        <a href="Recommended-sku.html"><button class="btn btn-default">Save & Continue</button></a>
+                                        <button class="btn btn-default"><a href="Assign-Taxonomy.html">Assign</a></button>
+                                    </span>
+                                </div>
+                                <div id="snackbar">Taxonomy Saved Successfully</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Design by <a href="https://www.altiussolution.com/" target="blank">Altius Technology Solutions</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="overlay"></div>
+
+        <script src="js/W3/w3data.js"></script>
+        <!-- jQuery CDN -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript">
+            w3IncludeHTML();
+        </script>
+        <script src="js/baseurl.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="js/Dragjs/redips-drag-min.js"></script>
+		<script src="js/Taxonomy/taxonomy.js"></script>
+		<script src="js/Hilitor.js"></script>
+        <script type="text/javascript">
+		<!-- function onhover(ms) -->
+		<!-- { -->
+		  <!-- var first = ms.firstElementChild; -->
+		  <!-- var divval = first.childNodes[0]; -->
+		  <!-- mouseinindex = divval.innerText; -->
+		  <!-- divval.innerText = ""; -->
+		<!-- } -->
+		
+		 var myHilitor = new Hilitor("lefttable");
+         myHilitor.apply("Battery Accumulator Cell Storage Electric");
+        </script>
+    </body>
+</html>

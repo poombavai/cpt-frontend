@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>CPT</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <!-- Font CSS -->
+        <link rel="stylesheet" href="css/Roboto.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+              <div w3-include-html="sidebar-layout.html"></div>
+            <!-- Page Content Holder -->
+            <div class="page">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <div class="logo">
+                                <button id="sidebarCollapse" class="btn">
+                                    <i class="fas fa-align-left"></i>
+                                    <span id="titlename">Taxonomy</span>
+                                </button>
+                            </div>
+                            <button class="btn" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                                <i class="fas fa-power-off" alt="Logout"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+                <section class="page-content">
+                    <div class="subheader">
+                        <div class="stepwizard">
+                            <div class="stepwizard-row setup-panel">
+                                <div class="stepwizard-step">
+                                    <a href="#step-1" class="btn btn-danger btn-circle step-complete">1</a>
+                                    <p>Upload your file</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-2" class="btn btn-danger btn-circle step-complete">2</a>
+                                    <p>Choose SKU's Column</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-3" class="btn btn-danger btn-circle step-complete">3</a>
+                                    <p>Recommended SKU's</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-4" class="btn btn-danger btn-circle active">4</a>
+                                    <p>Taxonomy Tree Creation</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-5" class="btn btn-danger btn-circle" disabled="disabled">5</a>
+                                    <p>Assign SKU's</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                     <div class="subheader">
+                        <h4 class="mb-0">Taxonomy Tree Creation</h4>
+                        <p>
+                            <label>No. Of SKUs (Assigned / Total): <span>0 / 5000</span></label>
+                        </p>
+                        <a href="Recommended-sku-create.html">
+                            <button class="btn btn-light">
+                                <i class="fas fa-arrow-left"></i>
+                                <span>Back</span>
+                            </button>
+                        </a>                        
+                    </div> -->
+                    <div class="container-fluid content">
+                        <div class="row mb-3 pb-2 stepper_btn">
+                            <div class=" col-md-12 d-flex align-items-center justify-content-between">
+                                <a href="Recommended-sku-create.html">
+                                  <button class="btn btn-light">
+                                      <i class="fas fa-arrow-left"></i>
+                                      <span>Back</span>
+                                  </button>
+                                </a>
+                                <a href="Assign-Taxonomy.html">
+                                    <button class="btn btn-light">
+                                        <span>Assign</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="redips-drag" class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <nav class="card_title">
+                                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Knowledge Base<span id="skucount"></span></a>
+                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Input Reference</a>
+                                  </div>
+                                  <input id="myInput" type="text" placeholder="Search" onkeyup="searchbox()">
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                    <div class="card table-drag">
+                                        <div class="card-body table-scroll">
+                                            <table id="lefttable" class="table">
+                                                <thead>
+                                                    <tr class="rd">
+                                                        <th class="th">#</th>
+                                                        <th class="th">Project</th>
+                                                        <th class="th">T1</th>
+                                                        <th class="th">T2</th>
+                                                        <th class="th">T3</th>
+                                                        <th class="th">T4</th>
+                                                        <th class="th">T5</th>
+                                                        <th class="th">T6</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tablerow">
+                                                    
+                                                    <tr id="noresultleft" style="display:none"><td>No results matching</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                    <div class="card table-ref">
+                                        <div class="card-body table-scroll">
+                                            <table class="table" id="inputtable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th class="th">Supplier Part No</th>
+                                                        <th class="th">Supplier Name</th>
+                                                        <th class="th">B&F ERP/Web Description</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="inputrow">
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <h3 class="card_title">
+                                    <label><span id="projectname"></span><span id="skucount1">0</span></label>
+                                    <span class="float-right d-flex">
+                                        <button id="addRow" class="btn btn-link" onclick="addrowclick()">Add new</button>
+                                        <button class="btn btn-link" onclick="deleteallrow()">Delete all</button>
+                                    </span>
+                                </h3>
+                                <div class="card table-drop">
+                                    <div class="card-body table-scroll">
+                                        <table id="rigttable" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="th d-none">#</th>
+                                                    <th class="th">T1</th>
+                                                    <th class="th">T2</th>
+                                                    <th class="th">T3</th>
+                                                    <th class="th">T4</th>
+                                                    <th class="th">T5</th>
+                                                    <th class="th">T6</th>
+                                                    <th class="th"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="myTable">
+                                                <tr>
+                                                    <td class="td d-none">1</td>
+                                                    <td><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td>
+                                                    <td><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td>
+                                                    <td><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td>
+                                                    <td><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td>
+                                                    <td><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td>
+                                                    <td><div class="redips-drag blue redips-clone" onclick="myFunction(this)"><span>click to add</span></div></td>
+                                                    <td><span onclick="deleterow(this)"><i class="fas fa-trash-alt"></i></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer tax-cnt text-right">
+                                        <span>
+                                            <button class="btn btn-default" onclick="saveonly()">Save</button>
+                                            <button class="btn btn-default" onclick="savecontinue()">Save & Continue</button>
+                                            <!-- <button class="btn btn-default"><a href="Assign-Taxonomy.html">Assign</a></button> -->
+                                        </span>
+                                    </div>
+                                </div>
+<!--                                 <div class="tax-cnt d-flex justify-content-end align-items-center">
+                                    <span>
+                                        <button class="btn btn-default" onclick="saveonly()">Save</button>
+                                        <button class="btn btn-default" onclick="savecontinue()">Save & Continue</button>
+                                        <button class="btn btn-default"><a href="Assign-Taxonomy.html">Assign</a></button>
+                                    </span>
+                                </div> -->
+                                <div id="snackbar">Taxonomy Saved Successfully</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overlay" id="loading">
+                        <img src="./images/loader.gif">
+                    </div>
+                </section>
+                <footer>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Design by <a href="https://www.altiussolution.com/" target="blank">Altius Technology Solutions</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <script src="js/W3/w3data.js"></script>
+        <!-- jQuery CDN -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript">
+            w3IncludeHTML();
+        </script>
+        <script src="js/baseurl.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="js/Dragjs/redips-drag-min.js"></script>
+        <script src="js/Taxonomy/taxonomy.js"></script>
+        <script src="js/Hilitor.js"></script>
+        <script src="js/taxonomycreate.js"></script>
+    </body>
+</html>

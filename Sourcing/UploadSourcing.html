@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>CPT</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <!-- Font CSS -->
+        <link rel="stylesheet" href="../css/Roboto.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="../css/layout.css">
+        <link rel="stylesheet" href="../css/custom.css">
+        <link rel="stylesheet" href="../css/responsive.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <div w3-include-html="../sidebar-layout.html"></div>
+            <!-- Page Content Holder -->
+            <div class="page">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <div class="logo">
+                                <button id="sidebarCollapse" class="btn">
+                                    <i class="fas fa-align-left"></i>
+                                    <span>Taxonomy</span>
+                                </button>
+                            </div>
+                            <button class="btn" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                                <i class="fas fa-power-off" alt="Logout"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+                <section class="page-content">
+                    <div class="subheader">
+                        <div class="stepwizard">
+                            <div class="stepwizard-row setup-panel">
+                                <div class="stepwizard-step">
+                                    <a href="#step-1" class="btn btn-danger btn-circle step-complete">1</a>
+                                    <p>Upload your file</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-2" class="btn btn-danger btn-circle step-complete">2</a>
+                                    <p>Choose SKU's Column</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-3" class="btn btn-danger btn-circle step-complete">3</a>
+                                    <p>Recommended SKU's</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-4" class="btn btn-danger btn-circle step-complete">4</a>
+                                    <p>Taxonomy Tree Creation</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-5" class="btn btn-danger btn-circle step-complete">5</a>
+                                    <p>Assign SKU's</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-6" class="btn btn-danger btn-circle active">6</a>
+                                    <p>Sourcing Upload</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-7" class="btn btn-danger btn-circle" disabled="disabled">7</a>
+                                    <p>Choose SKU's Column</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-8" class="btn btn-danger btn-circle" disabled="disabled">8</a>
+                                    <p>Recommended SKU's</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-9" class="btn btn-danger btn-circle" disabled="disabled">9</a>
+                                    <p>Taxonomy Sourcing</p>
+                                </div>
+                                <div class="stepwizard-step">
+                                    <a href="#step-10" class="btn btn-danger btn-circle" disabled="disabled">10</a>
+                                    <p>Assign Sourcing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid content">
+                        <div class="row mb-3 pb-2 stepper_btn">
+                            <div class=" col-md-12 d-flex align-items-center justify-content-between">
+                                <a href="../Dashboard.html">
+                                    <button class="btn btn-light">
+                                        <i class="fas fa-arrow-left"></i>
+                                        <span>Back</span>
+                                    </button>
+                                </a>
+                                <button class="btn btn-light" onclick="Sourcenext()">
+                                    <span>Next</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="goop" class="top_right_alert"></div>
+                        <div class="row align-items-center justify-content-center" style="height: 100%;">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="upload-file demo-droppable">
+                                    <!-- <h4 class="title-h4">Upload Your File</h4> -->
+                                    <form class="box has-advanced-upload is-success" method='post' enctype='multipart/form-data'>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 text-center">
+                                                <div id="idinput" class="input">
+    												<img src="../images/upload.png">
+                                                    <p>Drop Files Here or Click to Choose file</p>
+                                                </div>
+                                                <div class="output"></div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- <input type="file" id="input"> -->
+                                <div class="row" id="processbarid" >
+                                     <div class="col-md-12 col-sm-12 loader-bar">
+                                        <p><span id="loadingid"></span><span  id="loadSpan" class="float-right">0%</span></p>
+                                        <!-- <div class="progress">
+                                          <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                                          </div>
+                                        </div> -->
+                                        <div class="progress">
+                                           <progress id="progressBar" value="0" max="100" style="width:100%;"></progress> 
+                                        </div>
+                                        
+                                        <h3 id="status"></h3>
+                                        <p id="loaded_n_total"></p>
+                                        <!-- <button class="btn cancel"><i class="fas fa-times"></i></button> -->
+                                    </div>
+                                </div>
+                                <div class="row mrgn-top-20">
+                                    <div class="col-md-12 col-sm-12 text-center">
+                                        <button class="btn btn-default" id="button_id" disabled onclick="Sourceupload();">Sourceupload</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Design by <a href="https://www.altiussolution.com/" target="blank">Altius Technology Solutions</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+       <!--  <div class="overlay"></div> -->
+
+        <script src="../js/W3/w3data.js"></script>
+        <!-- jQuery CDN -->
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript">
+            w3IncludeHTML();
+        </script>
+        <script src="../js/baseurl.js"></script>
+        <script src="../js/custom.js"></script>
+        <script src="datajs/upload.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+    </body>
+</html>

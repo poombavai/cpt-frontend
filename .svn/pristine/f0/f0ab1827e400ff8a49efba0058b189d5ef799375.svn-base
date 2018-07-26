@@ -1,0 +1,23 @@
+<nav id="sidebar" class="active">
+    <div class="sidebar-header">
+        <img src="images/LOGO.png">
+    </div>
+    <ul class="list-unstyled components">
+        
+        <li class="active">
+            <a href="Dashboard.html"><i class="fas fa-tv"></i>Dashboard</a>
+        </li>
+        <li>
+            <a href="#"><i class="fas fa-sitemap"></i>Taxonomy</a>
+        </li>
+        <li>
+            <a href="#"><i class="fas fa-search"></i>Sourcing</a>
+        </li>
+        <li>
+            <a href="#"><i class="fas fa-file-alt"></i>Schema</a>
+        </li>
+        <li>
+            <a href="#"><i class="fas fa-database"></i>Data</a>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,59 @@
+//////CUSTOM JQUERIES
+$(document).ready(function () {
+    $("#sidebar, .table-scroll, .created-tax").mCustomScrollbar({
+        axis:"xy",
+        theme: "minimal"
+    });
+    $('[data-toggle="tooltip"]').tooltip();
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, .page').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+    $('.right-sidebar-close, .right-sidebar-overlay, #add').on('click', function () {
+        $('.right-sidebar-content').toggleClass('right-sidebar-open');
+        $('.right-sidebar-overlay').toggleClass('overlay-active');
+    });
+});
+             // $(document).on("click", ".right-sidebar-close", ".right-sidebar-overlay", "#add", function(){
+             //    $('.right-sidebar-content').toggleClass('right-sidebar-open');
+             //    $('.right-sidebar-overlay').toggleClass('overlay-active');
+             //    });
+
+// function snackbar() {
+//     var x = document.getElementById("snackbar");
+//     x.className = "show";
+//     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+// }
+
+$(document).ready(function () {
+
+    var navListItems = $('div.setup-panel div a'),
+            allWells = $('.setup-content'),
+            allNextBtn = $('.nextBtn');
+
+    allWells.hide();
+
+    navListItems.click(function (e) {
+        e.preventDefault();
+        var $target = $($(this).attr('href')),
+                $item = $(this);
+
+        if (!$item.hasClass('disabled')) {
+            navListItems.removeClass('active').addClass('btn-danger');
+            $item.addClass('active');
+            allWells.hide();
+            $target.show();
+            $target.find('input:eq(0)').focus();
+        }
+    });
+
+    allNextBtn.click(function(){
+        var curStepBtn = curStep.attr("id"),
+            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a")
+
+            nextStepWizard.removeAttr('disabled').trigger('click');
+    });
+
+    $('div.setup-panel div a.active').trigger('click');
+});
